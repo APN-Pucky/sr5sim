@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <cstring>
 #include "rapidxml.hpp"
 #include "rapidxml_utils.hpp"
 #include "character.h"
@@ -9,8 +10,9 @@
 using namespace rapidxml;
 using namespace std;
 
-void load_character(character & chr, const std::string & filename, bool do_warn_on_missing=true)
+const Character load_character(const std::string & filename, bool do_warn_on_missing=true)
 {
+  Character chr;
   file<> xmlFile(filename.c_str());
   xml_document<> doc;
   doc.parse<0>(xmlFile.data());
@@ -33,4 +35,5 @@ void load_character(character & chr, const std::string & filename, bool do_warn_
     if(strcmp(node->first_node("name")->value(),"ESS")==0) chr.essence = val;
     if(strcmp(node->first_node("name")->value(),"DEP")==0) chr.depth = val;
   }
+  return chr;
 }

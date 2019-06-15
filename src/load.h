@@ -1,3 +1,3 @@
 #include "character.h"
 #include <string>
-void load_character(character & chr, const std::string & filename, bool do_warn_on_missing=true);
+const Character load_character(const std::string & filename, bool do_warn_on_missing=true);

@@ -1,6 +1,10 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <string>
 #include "rapidxml.hpp"
 #include "character.h"
-#include <iostream>
+using namespace rapidxml;
 
 bool parse_file(const std::string & filename, std::vector<char>& buffer, xml_document<>& doc, bool do_warn_on_missing=true)
 {
@@ -37,7 +41,7 @@ bool parse_file(const std::string & filename, std::vector<char>& buffer, xml_doc
     }
 }
 
-void load_character(character & char, const std::string & filename, bool do_warn_on_missing=true)
+void load_character(character & chr, const std::string & filename, bool do_warn_on_missing=true)
 {
 
 }

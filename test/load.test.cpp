@@ -3,5 +3,7 @@
 #include <iostream>
 
 TEST_CASE("Load chum5 file","[load]") {
-  std::cout << "hi" << std::endl;
+  character nil;
+  load_character(nil,"test/test.chum5");
+  std::cout << "ok" << std::endl;
 }

@@ -1,8 +1,8 @@
 
 
+#file(GLOB_RECURSE sr5test_SOURCES "*.test.cpp")
 
-file(GLOB_RECURSE sr5test_SOURCES "*.test.cpp")
-
+set(sr5test_SOURCES test.cpp test.test.cpp load.test.cpp)
 set(TARGET_NAME sr5test)
 
 add_executable(${TARGET_NAME}

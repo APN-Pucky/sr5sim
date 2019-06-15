@@ -9,7 +9,7 @@
 
 void load_character(character & chr, const std::string & filename, bool do_warn_on_missing=true)
 {
-  rapidxml::file<> xmlFile(filename);
+  rapidxml::file<> xmlFile(filename.c_str());
   rapidxml::xml_document<> doc;
   doc.parse<0>(xmlFile.data());
 }

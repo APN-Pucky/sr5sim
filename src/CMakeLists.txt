@@ -1,7 +1,6 @@
 
 
 
-
 file(GLOB_RECURSE sr5sim_SOURCES "*.cpp")
 list(REMOVE_ITEM sr5sim_SOURCES "main.cpp")
 

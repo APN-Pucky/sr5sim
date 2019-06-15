@@ -1,4 +1,4 @@
 struct character
 {
-  unsigned body,agility,reaction,strength,willpower,logic,intuiton,charisma,edge,essence,magic,resonance;
+  unsigned body,agility,reaction,strength,willpower,logic,intuiton,charisma,edge,essence,magic,resonance,depth;
 };

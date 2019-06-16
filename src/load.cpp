@@ -24,7 +24,7 @@ const Character load_character(const std::string & filename, bool do_warn_on_mis
   xml_node<> * node = top->first_node("attributes")->first_node("attribute");
   for(;node;node = node->next_sibling())
   {
-    unsigned val = atoi(node->first_node("totalvalue")->value());
+    int val = atoi(node->first_node("totalvalue")->value());
     if(strcmp(node->first_node("name")->value(),"BOD")==0) chr.stats[Stat::body] = val;
     else if(strcmp(node->first_node("name")->value(),"AGI")==0) chr.stats[Stat::agility] = val;
     else if(strcmp(node->first_node("name")->value(),"REA")==0) chr.stats[Stat::reaction] = val;
@@ -46,16 +46,16 @@ const Character load_character(const std::string & filename, bool do_warn_on_mis
   node = top->first_node("newskills")->first_node("skills")->first_node("skill");
   for(;node;node = node->next_sibling())
   {
-    unsigned base = atoi(node->first_node("base")->value());
-    unsigned karma = atoi(node->first_node("karma")->value());
+    int base = atoi(node->first_node("base")->value());
+    int karma = atoi(node->first_node("karma")->value());
     if(strcmp(node->first_node("suid")->value(),"4fcd40cb-4b02-4b7e-afcb-f44d46cd5706")==0) chr.stats[Stat::unarmed_combat] = karma + base;  
 
   }
   node = top->first_node("newskills")->first_node("groups")->first_node("group");
   for(;node;node = node->next_sibling())
   {
-    unsigned base = atoi(node->first_node("base")->value());
-    unsigned karma = atoi(node->first_node("karma")->value());
+    int base = atoi(node->first_node("base")->value());
+    int karma = atoi(node->first_node("karma")->value());
     if(strcmp(node->first_node("name")->value(),"Close Combat")==0) chr.stats[Stat::unarmed_combat] += karma+base;
   }
 
@@ -90,10 +90,10 @@ const Character load_character(const std::string & filename, bool do_warn_on_mis
     }
     else
     {
-	if(stoi(val)>high_base)
-	{
-		high_base = stoi(val);
-	}
+		if(stoi(val)>high_base)
+		{
+			high_base = stoi(val);
+		}
     }
   }
   chr.stats[Stat::armor] = high_base+bonus;

@@ -1,10 +1,10 @@
-#include <stdlib.h>
-#include <time.h>
+#include <cstdlib>
+#include <ctime>
 #include "debug.h"
 
 void init()
 {
-	srand(time(NULL));
+	srand((unsigned int) time(nullptr));
 }
 
 int roll(int n)

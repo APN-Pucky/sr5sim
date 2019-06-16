@@ -8,4 +8,6 @@ TEST_CASE("Load chum5 file","[load]") {
   cout << nil.alias<< endl;
   cout << "Strength:" << nil.stats[strength]<< endl;
   cout << "Agility:" <<nil.stats[agility]<< endl;
+  cout << "Armor:" <<nil.stats[armor]<< endl;
+  cout << "Unarmed Combat:" <<nil.stats[unarmed_combat]<< endl;
 }

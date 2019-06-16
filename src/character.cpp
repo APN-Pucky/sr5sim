@@ -23,8 +23,8 @@ void CI::reduce_health(int dmg)
 	_DEBUG_MSG(1," => -%d HP\n",dmg);
 	this->health -= dmg;
 }
-int CI::eval_net( std::initializer_list<Stat> stats1, std::initializer_list<Stat> stats2){
-	return eval(stats1) - eval(stats2);
+int CI::eval_net( std::initializer_list<Stat> stats1, CI* enemy, std::initializer_list<Stat> stats2){
+	return eval(stats1) - enemy->eval(stats2);
 }
 
 int CI::eval(std::initializer_list<Stat> stats) {

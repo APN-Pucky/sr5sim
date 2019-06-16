@@ -35,18 +35,32 @@ class CharacterInstance
 {
 	const Character reference;
 	Character chr;
+	unordered_map<Stat,int>* stats;
 
 	public:
-		int health = 100;
+		int phys_dmg = 0;
+		int stun_dmg = 0;
+		int init_dice = 1;
 		int uid = 0;
 	public:
-		CharacterInstance(Character chr) : reference(chr), chr(reference) {}
+		CharacterInstance(Character chr) : reference(chr), chr(reference) {stats = &chr.stats;}
 		~CharacterInstance(){}
-		//void resist_damage(int damage,function<int(CharacterInstance*,int)> block);
+		// var stat:
+		int max_phys();
+		int max_ko();
+		int max_stun();
+		int mali();
+		// state
+		bool ko();
+		bool alive();
+		// interact
 		void resist_armor_body(int d);
 		void reduce_health(int d);
+		// eval
+		int init();
 		int eval_net(initializer_list<Stat> s1,CharacterInstance* c, initializer_list<Stat> s2);
 		int eval(initializer_list<Stat> s1);
+		// 
 		string description();
 		string id();
 };

@@ -5,5 +5,6 @@
 
 TEST_CASE("RNG", "[rng]") {
 	init();
-	std::cout << roll(10) << std::endl;
+	std::cout <<"hits " <<  hits(10) << std::endl;
+	std::cout <<"sum " << sum(4) << std::endl;
 }

@@ -54,16 +54,18 @@ class CharacterInstance
 		bool ko();
 		bool alive();
 		// interact
+		void attack_unarmed_combat(CharacterInstance* c);
 		void resist_armor_body(int d);
-		void reduce_health(int d);
+		void take_phys(int d);
+		void take_stun(int d);
 		// eval
 		int init();
-		int eval_net(initializer_list<Stat> s1,CharacterInstance* c, initializer_list<Stat> s2);
-		int eval(initializer_list<Stat> s1);
+		int eval_net(initializer_list<Stat> s1,CharacterInstance* c, initializer_list<Stat> s2, bool apply_enemy_mali=true,bool apply_own_mali=true);
+		int eval(initializer_list<Stat> s1, bool apply_mali=true);
 		// 
 		string description();
 		string id();
 };
 
-using CI = CharacterInstance;
 
+using CI = CharacterInstance;

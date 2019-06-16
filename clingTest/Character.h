@@ -14,7 +14,7 @@ private:
 public:
   Character(string name = "Person", double hp = 100, double armor = 100, double damage = 10);
   string str();
-  void attack(Character target);
+  void attack(Character& target);
   void takeDamage(double dmg);
 };
 

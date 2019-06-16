@@ -11,8 +11,8 @@ TEST_CASE("TestDMG","[dmg]") {
 
 	cout << nil.stats[body] << endl;
 	CharacterInstance ci(nil);
-	cout << ci.health << endl;
+	cout << "Phys: " << ci.phys_dmg << endl;
 	ci.resist_armor_body(100);
-	cout << ci.health << endl;
+	cout << "Phys: " << ci.phys_dmg << endl;
 }
 

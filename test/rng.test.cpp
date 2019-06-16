@@ -5,6 +5,8 @@
 
 TEST_CASE("RNG", "[rng]") {
 	init();
-	std::cout <<"hits " <<  hits(10) << std::endl;
-	std::cout <<"sum " << sum(4) << std::endl;
+	auto h = hits(10);
+	std::cout <<" hits " << h  << std::endl;
+	auto s = sum(10);
+	std::cout <<" sum " << s << std::endl;
 }

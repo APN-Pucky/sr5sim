@@ -2,8 +2,13 @@
 
 #file(GLOB_RECURSE sr5test_SOURCES "*.test.cpp")
 
-set(sr5test_SOURCES test.cpp test.test.cpp load.test.cpp dmg.test.cpp
-	rng.test.cpp)
+set(sr5test_SOURCES test.cpp 
+	test.test.cpp 
+	load.test.cpp 
+	rng.test.cpp
+	dmg.test.cpp
+	battle.test.cpp
+)
 set(TARGET_NAME sr5test)
 
 add_executable(${TARGET_NAME}

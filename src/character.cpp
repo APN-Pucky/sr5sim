@@ -25,7 +25,7 @@ int CI::max_stun() {
 }
 
 int CI::mali() {
-	return phys_dmg/3+stun_dmg+3;
+	return phys_dmg/3+stun_dmg/3;
 }
 bool CI::ko() {
 	return max_stun()<stun_dmg || max_ko()<phys_dmg;
@@ -34,8 +34,9 @@ bool CI::alive() {
 	return max_phys()>phys_dmg;
 }
 
-void CI::attack_unarmed_combat(CI* enemy) {
-	enemy->resist_armor_body(eval_net({agility,unarmed_combat},enemy,{reaction,intuition},false));
+void CI::attack_unarmed_combat(CI& enemy) {
+	if(ko())return;
+	enemy.resist_armor_body(eval_net({agility,unarmed_combat},enemy,{reaction,intuition},false));
 }
 
 void CI::resist_armor_body(int d){
@@ -52,16 +53,21 @@ void CI::take_phys(int dmg){
 	_DEBUG_MSG(1," => -%i HP\n",dmg);
 	this->phys_dmg += dmg;
 }
-int CI::eval_net( std::initializer_list<Stat> stats1, CI* enemy, std::initializer_list<Stat> stats2, bool apply_enemy_mali,bool apply_own_mali){
-	return eval(stats1,apply_enemy_mali) - enemy->eval(stats2,apply_enemy_mali);
+int CI::eval_net( std::initializer_list<Stat> stats1, CI& enemy, std::initializer_list<Stat> stats2, bool apply_enemy_mali,bool apply_own_mali){
+	_DEBUG_MSG(1,"(");
+	auto first = eval(stats1,apply_own_mali);
+	_DEBUG_MSG(1,") vs (");
+	auto second = enemy.eval(stats2,apply_enemy_mali);
+	_DEBUG_MSG(1,")=%i ", first-second);
+	return first-second;
 }
 
-int CI::eval(std::initializer_list<Stat> stats, bool apply_mali) {
+int CI::eval(std::initializer_list<Stat> statslist, bool apply_mali) {
 	int sum=0;
 	_DEBUG_MSG(1,"[");
-	for(auto s: stats) {
-		sum+=this->chr.stats[s];
-		_DEBUG_MSG(1,"%s(%i)+",abbrev[s].c_str(),this->chr.stats[s]);
+	for(auto s : statslist) {
+		sum+=stats[s];
+		_DEBUG_MSG(1,"%s(%i)+",abbrev[s].c_str(),stats[s]);
 	}
 	int mal = this->mali();
 	if(mal)

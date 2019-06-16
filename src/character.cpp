@@ -70,7 +70,7 @@ int CI::eval(std::initializer_list<Stat> statslist, bool apply_mali) {
 		_DEBUG_MSG(1,"%s(%i)+",abbrev[s].c_str(),stats[s]);
 	}
 	int mal = this->mali();
-	if(mal)
+	if(apply_mali && mal)
 	{
 		_DEBUG_MSG(1,"%s(-%i)","MAL",mal);
 		sum-=mal;

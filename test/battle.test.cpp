@@ -1,6 +1,8 @@
 #include <iostream>
 #include "catch.hpp"
 #include "load.h"
+#include "debug.h"
+
 using namespace std;
 
 TEST_CASE("Battle","[battle]") {
@@ -19,13 +21,22 @@ TEST_CASE("Battle","[battle]") {
 	p2.stats[intuition] = 5;
 	p2.stats[unarmed_combat] = 15;
 	
+	int w1 = 0;
+	int w2 = 0;
+	debug_print =0;
+	for(int i =0; i < 1000;++i) {
 	CI c1(p1);
 	CI c2(p2);
 	while(!c1.ko() && !c2.ko()) {	
 		c1.attack_unarmed_combat(c2); 
 		c2.attack_unarmed_combat(c1);
 	}
-	if(!c1.ko()) cout << "p1 wins" << endl;
-	if(!c2.ko()) cout << "p2 wins" << endl;
+	if(!c1.ko()) w1++;
+	if(!c2.ko()) w2++;
+	}
+	debug_print =2;
+	cout << w1 << "/" << w2  << "=" << 1.*w1/w2 << endl;
+
+
 
 }

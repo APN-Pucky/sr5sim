@@ -6,10 +6,13 @@ using namespace std;
 
 TEST_CASE("TestDMG","[dmg]") {
 	Character nil;
-	cout << nil.body << endl;
+	nil.stats[body] = 5;
+	nil.stats[armor] = 50;
+
+	cout << nil.stats[body] << endl;
 	CharacterInstance ci(nil);
 	cout << ci.health << endl;
-	ci.resist_damage(100,resist_armor_body);
+	ci.resist_armor_body(100);
 	cout << ci.health << endl;
 }
 

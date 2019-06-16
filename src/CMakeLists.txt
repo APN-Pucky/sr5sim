@@ -4,8 +4,11 @@
 #file(GLOB_RECURSE sr5sim_SOURCES "*.cpp")
 #list(REMOVE_ITEM sr5sim_SOURCES "main.cpp")
 
-set(sr5sim_SOURCES character.cpp load.cpp debug.cpp 
-	utils.cpp rng.cpp)
+set(sr5sim_SOURCES character.cpp 
+	load.cpp debug.cpp 
+	utils.cpp rng.cpp
+	sim.cpp
+)
 
 
 add_library(sr5lib ${sr5sim_SOURCES})

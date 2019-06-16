@@ -8,6 +8,7 @@ set(sr5test_SOURCES test.cpp
 	rng.test.cpp
 	dmg.test.cpp
 	battle.test.cpp
+	sim.test.cpp
 )
 set(TARGET_NAME sr5test)
 

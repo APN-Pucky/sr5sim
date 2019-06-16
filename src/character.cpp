@@ -10,8 +10,12 @@
 
 using namespace std;
 
-int CI::init() {
-	return stats[reaction]+stats[intuition] + sum(init_dice) - mali();
+int CI::current_initiative() {
+	return current_init_roll-mali();
+}
+
+int CI::initiative() {
+	return stats[reaction]+stats[intuition] + sum(init_dice);
 }
 
 int CI::max_phys() {
@@ -34,6 +38,12 @@ bool CI::alive() {
 	return max_phys()>phys_dmg;
 }
 
+void CI::act(vector<CI>& cis) {
+	_DEBUG_MSG(1,"TURN: %s", description());
+	if(ko())return;
+	attack_unarmed_combat(cis[1]);
+}
+
 void CI::attack_unarmed_combat(CI& enemy) {
 	if(ko())return;
 	enemy.resist_armor_body(eval_net({agility,unarmed_combat},enemy,{reaction,intuition},false));
@@ -53,6 +63,12 @@ void CI::take_phys(int dmg){
 	_DEBUG_MSG(1," => -%i HP\n",dmg);
 	this->phys_dmg += dmg;
 }
+
+void init() {
+	current_init_roll = initiative();
+	has_acted = false;
+}
+
 int CI::eval_net( std::initializer_list<Stat> stats1, CI& enemy, std::initializer_list<Stat> stats2, bool apply_enemy_mali,bool apply_own_mali){
 	_DEBUG_MSG(1,"(");
 	auto first = eval(stats1,apply_own_mali);
@@ -79,6 +95,18 @@ int CI::eval(std::initializer_list<Stat> statslist, bool apply_mali) {
 	return hits(sum);
 }
 
+bool CI:: operator> (CI& c1,CI& c2) {
+	if(c1.has_acted) return false;
+	if(c2.has_acted) return true;
+	if(c1.current_init == c2.current_init)return c1.stats[edge]>c2.stats[edge];
+	return c1.current_initiative() > c2.current_initiative();
+}
+bool CI:: operator< (CI& c1,CI& c2) {
+	if(c1.has_acted) return true;
+	if(c2.has_acted) return false;
+	if(c1.current_init == c2.current_init)return c1.stats[edge]<c2.stats[edge];
+	return c1.current_initiative() < c2.current_initiative();
+}
 
 string CI::id()
 {
@@ -87,6 +115,6 @@ string CI::id()
 
 string CI::description()
 {
-	return "";
+	return id() + phys_dmg + "/" + max_hp() + " PHYS, " + stun_dmg + "/" + max_stun() + " STUN, INIT: " + current_initiative() + ", ACTIVE: " + !has_acted;
 }
 

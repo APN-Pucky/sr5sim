@@ -26,7 +26,7 @@ const string abbrev[num_stat] = {
 struct Character
 {
   unordered_map<Stat,int> stats;
-  unordered_map<string,string> armor;
+  //unordered_map<string,string> armor;
   string name,alias;
 };
 
@@ -34,8 +34,8 @@ struct Character
 class CharacterInstance
 {
 	const Character reference;
-	Character chr;
-	unordered_map<Stat,int>* stats;
+	//Character chr;
+	unordered_map<Stat,int> stats;
 
 	public:
 		int phys_dmg = 0;
@@ -43,7 +43,7 @@ class CharacterInstance
 		int init_dice = 1;
 		int uid = 0;
 	public:
-		CharacterInstance(Character chr) : reference(chr), chr(reference) {stats = &chr.stats;}
+		CharacterInstance(Character chr) : reference(chr), stats(chr.stats) {}
 		~CharacterInstance(){}
 		// var stat:
 		int max_phys();

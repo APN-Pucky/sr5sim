@@ -2,10 +2,9 @@
 #include <vector>
 #include <string>
 #include <map>
-#include <unordered_map>
+#include <array>
+
 using namespace std;
-
-
 
 
 enum Stat {
@@ -25,31 +24,36 @@ const string abbrev[num_stat] = {
 
 struct Character
 {
-  unordered_map<Stat,int> stats;
+  array<int,num_stat> stats = {-1}; 
+  //unordered_map<Stat,int> stats;
   //unordered_map<string,string> armor;
   string name,alias;
+  int uid = 0;
+  
 };
 
 
 class CharacterInstance
 {
-	const Character reference;
-
 	
 	public:
+		Character reference;
+		
 		int init_dice = 1;
 		int current_init_roll = 0;
 		int phys_dmg = 0;
 		int stun_dmg = 0;
 		bool has_acted = false;
-		int uid = 0;
 		//Character chr;
-		unordered_map<Stat,int> stats;
+		array<int,num_stat> stats;
+		//unordered_map<Stat,int> stats;
 		
 	public:
-		CharacterInstance(Character chr) : reference(chr), stats(chr.stats) {}
-		~CharacterInstance() {}
+		CharacterInstance(Character& chr) :reference(chr), stats(chr.stats) {}
+		//~CharacterInstance() {}
 		CharacterInstance(const CharacterInstance&)  = default;
+		//CharacterInstance& operator =(const CharacterInstance&& x);
+		
 		// var stat:
 		int max_phys();
 		int max_ko();
@@ -63,7 +67,7 @@ class CharacterInstance
 		// interact
 		void act(vector<CharacterInstance>& cs);
 		void attack_unarmed_combat(CharacterInstance& c);
-		void resist_armor_body(int d, unsigned ap=0, bool stun=false);
+		void resist_armor_body(int d, int ap=0, bool stun=false);
 		void take_phys(int d);
 		void take_stun(int d);
 		// eval
@@ -74,9 +78,10 @@ class CharacterInstance
 		// cmp by initiative
 		friend bool operator >( CharacterInstance& x, CharacterInstance& y);
 		friend bool operator <( CharacterInstance& x,  CharacterInstance& y);
-		CharacterInstance& operator =(const CharacterInstance&& x);
+		//CharacterInstance& operator =(const CharacterInstance&& x);
 		// 
 		string description();
+		int uid();
 		string id();
 };
 

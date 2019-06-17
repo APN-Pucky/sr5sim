@@ -52,7 +52,7 @@ void CI::act(vector<CI>& cis) {
 
 void CI::attack_unarmed_combat(CI& enemy) {
 	if(ko())return;
-	unsigned net = eval_net({agility,unarmed_combat},enemy,{reaction,intuition},false);
+	int net = eval_net({agility,unarmed_combat},enemy,{reaction,intuition},false);
 	if(net >0){
 		enemy.resist_armor_body(stats[strength]+net,true);
 	}
@@ -61,7 +61,7 @@ void CI::attack_unarmed_combat(CI& enemy) {
 	}
 }
 
-void CI::resist_armor_body(int d, unsigned ap, bool stun){
+void CI::resist_armor_body(int d, int ap, bool stun){
 	_DEBUG_MSG(1,"%s resists %i with %i AP ",id().c_str(),d,ap);	
 	stats[armor]+=ap;
 	int dmg = max(0,d-eval({armor,body},false));
@@ -128,21 +128,15 @@ bool  operator> ( CI& c1, CI& c2) {
 	if(c1.current_initiative() == c2.current_initiative())return c1.stats[edge]<c2.stats[edge];
 	return c1.current_initiative() < c2.current_initiative();
 }
-CI& CI::operator= (const CI&& c1) {
-	init_dice = c1.init_dice;
-	stats = c1.stats;
-	uid = c1.uid;
-	current_init_roll =c1.current_init_roll;
-	stun_dmg =c1.stun_dmg;
-	phys_dmg =c1.phys_dmg;
-	has_acted =c1.has_acted;
-	return *this;
+
+
+int CI::uid() 
+{
+	return reference.uid;
 }
-
-
 string CI::id()
 {
-	return reference.alias + "#" + tos(uid);
+	return reference.alias + "#" + tos(uid());
 }
 
 string CI::description()

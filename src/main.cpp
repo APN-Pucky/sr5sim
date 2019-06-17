@@ -11,6 +11,7 @@ int main(int argc,char** argv)
 	Character c2 = load_character("../own/ogir.chum5");
 	debug_print--;
 	SimData sd;
+	c1.uid = 1;
 	/*
 	// 7*3=21
 	Character c1,c2;
@@ -36,14 +37,15 @@ int main(int argc,char** argv)
 	int loss = 0;
 	int stall = 0;
 	debug_print = 0;
-	while(wins+loss+stall < 1000)
+	while(wins+loss+stall < 100000)
 	{
 		simulate(sd,{c1,c2});
 		if(sd.res==WIN)wins++;
 		if(sd.res==LOSS)loss++;
 		if(sd.res==STALL)stall++;
-		cout << endl << "RES: " << 1.*wins/(loss+wins+stall) << " " << wins << "/" << loss << "/" << stall << endl;
+		//cout << endl << "RES: " << 1.*wins/(loss+wins+stall) << " " << wins << "/" << loss << "/" << stall << endl;
 	}
+	cout << endl << "RES: " << 1.*wins/(loss+wins+stall) << " " << wins << "/" << loss << "/" << stall << endl;
 	debug_print = 2;
 	
 	

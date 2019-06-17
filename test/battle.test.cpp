@@ -6,6 +6,7 @@
 using namespace std;
 
 TEST_CASE("Battle","[battle]") {
+	
 	Character p1,p2;
 	p1.stats[body] = 4;
 	p1.stats[agility] = 4;
@@ -21,6 +22,7 @@ TEST_CASE("Battle","[battle]") {
 	p2.stats[intuition] = 5;
 	p2.stats[unarmed_combat] = 15;
 	
+	cout << "pre battle" << endl;
 	int w1 = 0;
 	int w2 = 0;
 	debug_print =0;

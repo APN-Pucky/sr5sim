@@ -104,6 +104,6 @@ const Character load_character(const std::string & filename, bool do_warn_on_mis
   }
   chr.stats[Stat::armor] = high_base+bonus;
   
-  _DEBUG_MSG(3,"and %i ARM\n", chr.stats[armor]);
+  _DEBUG_MSG(3," and %i ARM\n", chr.stats[armor]);
   return chr;
 }

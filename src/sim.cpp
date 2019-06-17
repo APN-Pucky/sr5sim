@@ -36,7 +36,7 @@ void next_round(Field& f)
 void simulate(SimData& sd,std::initializer_list<Character> chars) 
 {
 	Field f(chars,sd);
-	f.cis[0].uid = 1;
+	//f.cis[0].reference.uid = 1;
 	int rounds = 0;
 	while(!f.cis[0].ko() && !f.cis[1].ko() && rounds < 100)
 	{
@@ -69,5 +69,5 @@ void simulate(SimData& sd,std::initializer_list<Character> chars)
 	
 	f.simdata.res=STALL;
 	for(auto a : f.cis)
-		if(a.uid==1)f.simdata.res = a.ko()?LOSS:WIN;
+		if(a.uid()==1)f.simdata.res = a.ko()?LOSS:WIN;
 }

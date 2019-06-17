@@ -15,7 +15,12 @@ int CI::current_initiative() {
 }
 
 int CI::initiative() {
-	return stats[reaction]+stats[intuition] + sum(init_dice);
+	int s = stats[reaction]+stats[intuition] ;
+	_DEBUG_MSG(1, "INIT");
+	_DEBUG_MSG(2, " %i+%id6",s,init_dice);
+	s+= sum(init_dice);
+	_DEBUG_MSG(1, " => %i\n",s);
+	return s;
 }
 
 int CI::max_phys() {
@@ -39,7 +44,8 @@ bool CI::alive() {
 }
 
 void CI::act(vector<CI>& cis) {
-	_DEBUG_MSG(1,"TURN: %s", description());
+	_DEBUG_MSG(1,"TURN: %s\n", description().c_str());
+	has_acted = true;
 	if(ko())return;
 	attack_unarmed_combat(cis[1]);
 }
@@ -72,10 +78,11 @@ void CI::take_phys(int dmg){
 	this->phys_dmg += dmg;
 }
 
-void init() {
+void CI::init() {
 	current_init_roll = initiative();
 	has_acted = false;
 }
+
 
 int CI::eval_net( std::initializer_list<Stat> stats1, CI& enemy, std::initializer_list<Stat> stats2, bool apply_enemy_mali,bool apply_own_mali){
 	_DEBUG_MSG(1,"(");
@@ -103,18 +110,29 @@ int CI::eval(std::initializer_list<Stat> statslist, bool apply_mali) {
 	return hits(sum);
 }
 
-bool CI:: operator> (CI& c1,CI& c2) {
-	if(c1.has_acted) return false;
-	if(c2.has_acted) return true;
-	if(c1.current_init == c2.current_init)return c1.stats[edge]>c2.stats[edge];
+bool  operator< ( CI& c1, CI& c2) {
+	if(c1.has_acted && !c2.has_acted) return false;
+	if(c2.has_acted && !c1.has_acted) return true;
+	if(c1.current_initiative() == c2.current_initiative())return c1.stats[edge]>c2.stats[edge];
 	return c1.current_initiative() > c2.current_initiative();
 }
-bool CI:: operator< (CI& c1,CI& c2) {
-	if(c1.has_acted) return true;
-	if(c2.has_acted) return false;
-	if(c1.current_init == c2.current_init)return c1.stats[edge]<c2.stats[edge];
+bool  operator> ( CI& c1, CI& c2) {
+	if(c1.has_acted && !c2.has_acted) return true;
+	if(c2.has_acted && !c1.has_acted) return false;
+	if(c1.current_initiative() == c2.current_initiative())return c1.stats[edge]<c2.stats[edge];
 	return c1.current_initiative() < c2.current_initiative();
 }
+CI& CI::operator= (const CI&& c1) {
+	init_dice = c1.init_dice;
+	stats = c1.stats;
+	uid = c1.uid;
+	current_init_roll =c1.current_init_roll;
+	stun_dmg =c1.stun_dmg;
+	phys_dmg =c1.phys_dmg;
+	has_acted =c1.has_acted;
+	return *this;
+}
+
 
 string CI::id()
 {
@@ -123,6 +141,6 @@ string CI::id()
 
 string CI::description()
 {
-	return id() + phys_dmg + "/" + max_hp() + " PHYS, " + stun_dmg + "/" + max_stun() + " STUN, INIT: " + current_initiative() + ", ACTIVE: " + !has_acted;
+	return id()  + ": "+ tos(phys_dmg) + "/" + tos(max_phys()) + " PHYS, " + tos(stun_dmg) + "/" + tos(max_stun()) + " STUN, INIT: " + tos(current_initiative()) + ", ACTIVE: " + tos((int)!has_acted);
 }
 

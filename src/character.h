@@ -35,9 +35,9 @@ class CharacterInstance
 {
 	const Character reference;
 
-	int init_dice = 1;
 	
 	public:
+		int init_dice = 1;
 		int current_init_roll = 0;
 		int phys_dmg = 0;
 		int stun_dmg = 0;
@@ -48,7 +48,8 @@ class CharacterInstance
 		
 	public:
 		CharacterInstance(Character chr) : reference(chr), stats(chr.stats) {}
-		~CharacterInstance(){}
+		~CharacterInstance() {}
+		CharacterInstance(const CharacterInstance&)  = default;
 		// var stat:
 		int max_phys();
 		int max_ko();
@@ -60,7 +61,7 @@ class CharacterInstance
 		bool ko();
 		bool alive();
 		// interact
-		void act(vector<CharacterInstance>);
+		void act(vector<CharacterInstance>& cs);
 		void attack_unarmed_combat(CharacterInstance& c);
 		void resist_armor_body(int d, unsigned ap=0, bool stun);
 		void take_phys(int d);
@@ -71,8 +72,9 @@ class CharacterInstance
 		int eval(initializer_list<Stat> s1, bool apply_mali=true);
 		
 		// cmp by initiative
-		friend bool operator >(const CharacterInstance& x, const CharacterInstance& y);
-		friend bool operator <(const CharacterInstance& x, const CharacterInstance>& y);
+		friend bool operator >( CharacterInstance& x, CharacterInstance& y);
+		friend bool operator <( CharacterInstance& x,  CharacterInstance& y);
+		CharacterInstance& operator =(const CharacterInstance&& x);
 		// 
 		string description();
 		string id();

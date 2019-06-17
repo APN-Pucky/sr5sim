@@ -10,10 +10,13 @@ cd ../bin
 
 if [ -d "Debug" ]; then
 	./Debug/sr5test.exe #windows
+	./Debug/sr5sim.exe #windows
 else
 	if [ -d "Release" ]; then
 		./Release/sr5test.exe #windows
+		./Release/sr5sim.exe #windows
 	else
-		./sr5test #linux
+		./sr5sim #linux
+		./sr5sim #linux
 	fi
 fi

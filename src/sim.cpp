@@ -37,9 +37,10 @@ void simulate(SimData& sd,std::initializer_list<Character> chars)
 {
 	Field f(chars,sd);
 	f.cis[0].uid = 1;
-
-	while(!f.cis[0].ko() && !f.cis[1].ko())
+	int rounds = 0;
+	while(!f.cis[0].ko() && !f.cis[1].ko() && rounds < 100)
 	{
+		rounds++;
 		new_init_round(f);
 		sort(f.cis.begin(),f.cis.end());
 		while(f.cis[0].current_initiative()>0)
@@ -55,6 +56,9 @@ void simulate(SimData& sd,std::initializer_list<Character> chars)
 				{
 					f.cis[0].has_acted = true;
 				}
+				//move back -> faster sort?
+				f.cis.emplace_back(f.cis[0]);
+				f.cis.erase(f.cis.begin());
 				sort(f.cis.begin(),f.cis.end());		
 			}
 			next_round(f);

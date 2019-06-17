@@ -63,7 +63,7 @@ class CharacterInstance
 		// interact
 		void act(vector<CharacterInstance>& cs);
 		void attack_unarmed_combat(CharacterInstance& c);
-		void resist_armor_body(int d, unsigned ap=0, bool stun);
+		void resist_armor_body(int d, unsigned ap=0, bool stun=false);
 		void take_phys(int d);
 		void take_stun(int d);
 		// eval

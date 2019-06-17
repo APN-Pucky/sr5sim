@@ -52,21 +52,27 @@ void CI::act(vector<CI>& cis) {
 
 void CI::attack_unarmed_combat(CI& enemy) {
 	if(ko())return;
-	enemy.resist_armor_body(stats[strength]+eval_net({agility,unarmed_combat},enemy,{reaction,intuition},false),true);
+	unsigned net = eval_net({agility,unarmed_combat},enemy,{reaction,intuition},false);
+	if(net >0){
+		enemy.resist_armor_body(stats[strength]+net,true);
+	}
+	else {
+		_DEBUG_MSG(1,"%s dodged\n",enemy.id().c_str());
+	}
 }
 
 void CI::resist_armor_body(int d, unsigned ap, bool stun){
 	_DEBUG_MSG(1,"%s resists %i with %i AP ",id().c_str(),d,ap);	
 	stats[armor]+=ap;
 	int dmg = max(0,d-eval({armor,body},false));
-	if(stun || dmg < stats[armor]-dk){
+	if(stun || dmg < stats[armor]){
 		take_stun(dmg);
 	}
 	else
 	{
 		take_phys(dmg);
 	}
-	stats[armor]-ap;
+	stats[armor]-=ap;
 }
 
 void CI::take_stun(int stun) {

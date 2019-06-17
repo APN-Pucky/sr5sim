@@ -6,6 +6,7 @@
 #include "rapidxml.hpp"
 #include "rapidxml_utils.hpp"
 #include "character.h"
+#include "debug.h"
 
 using namespace rapidxml;
 using namespace std;
@@ -20,7 +21,9 @@ const Character load_character(const std::string & filename, bool do_warn_on_mis
 
   chr.alias = string(top->first_node("alias")->value());
   chr.name = string(top->first_node("name")->value());
-
+  
+  _DEBUG_MSG(3,"Loading %s aka %s\n", chr.name.c_str(),chr.alias.c_str());
+  
   xml_node<> * node = top->first_node("attributes")->first_node("attribute");
   for(;node;node = node->next_sibling())
   {
@@ -49,7 +52,7 @@ const Character load_character(const std::string & filename, bool do_warn_on_mis
     int base = atoi(node->first_node("base")->value());
     int karma = atoi(node->first_node("karma")->value());
     if(strcmp(node->first_node("suid")->value(),"4fcd40cb-4b02-4b7e-afcb-f44d46cd5706")==0) chr.stats[Stat::unarmed_combat] = karma + base;  
-
+	
   }
   node = top->first_node("newskills")->first_node("groups")->first_node("group");
   for(;node;node = node->next_sibling())
@@ -76,6 +79,9 @@ const Character load_character(const std::string & filename, bool do_warn_on_mis
     }
   }
 
+
+  _DEBUG_MSG(3,"%s has %i UCC", chr.name.c_str(),chr.stats[unarmed_combat]);
+
   int high_base = 0;
   int bonus = 0;
   string plus = "+";
@@ -97,5 +103,7 @@ const Character load_character(const std::string & filename, bool do_warn_on_mis
     }
   }
   chr.stats[Stat::armor] = high_base+bonus;
+  
+  _DEBUG_MSG(3,"and %i ARM\n", chr.stats[armor]);
   return chr;
 }

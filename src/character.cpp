@@ -46,13 +46,21 @@ void CI::act(vector<CI>& cis) {
 
 void CI::attack_unarmed_combat(CI& enemy) {
 	if(ko())return;
-	enemy.resist_armor_body(eval_net({agility,unarmed_combat},enemy,{reaction,intuition},false));
+	enemy.resist_armor_body(stats[strength]+eval_net({agility,unarmed_combat},enemy,{reaction,intuition},false),true);
 }
 
-void CI::resist_armor_body(int d){
-	_DEBUG_MSG(1,"%s resists %i ",id().c_str(),d);	
+void CI::resist_armor_body(int d, unsigned ap, bool stun){
+	_DEBUG_MSG(1,"%s resists %i with %i AP ",id().c_str(),d,ap);	
+	stats[armor]+=ap;
 	int dmg = max(0,d-eval({armor,body},false));
-	take_phys(dmg);
+	if(stun || dmg < stats[armor]-dk){
+		take_stun(dmg);
+	}
+	else
+	{
+		take_phys(dmg);
+	}
+	stats[armor]-ap;
 }
 
 void CI::take_stun(int stun) {

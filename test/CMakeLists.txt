@@ -4,6 +4,7 @@
 
 set(sr5test_SOURCES test.cpp 
 	test.test.cpp 
+	sr5.test.cpp
 	load.test.cpp 
 	rng.test.cpp
 	dmg.test.cpp

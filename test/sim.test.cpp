@@ -6,7 +6,7 @@ using namespace std;
 
 TEST_CASE("Sim","[sim]") {
 	Character c1,c2;
-	c1.uid = 1;
+	c1.uuid = 1;
 	SimData sd;
 	c1.stats[agility] = 5;
 	c2.stats[agility] = 5;

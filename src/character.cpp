@@ -15,7 +15,7 @@ int CI::current_initiative() {
 }
 
 int CI::initiative() {
-	int s = stats[reaction]+stats[intuition] ;
+	int s = stat(reaction)+stat(intuition) ;
 	_DEBUG_MSG(1, "INIT");
 	_DEBUG_MSG(2, " %i+%id6",s,init_dice);
 	s+= sum(init_dice);
@@ -24,13 +24,13 @@ int CI::initiative() {
 }
 
 int CI::max_phys() {
-	return 8+(stats[body]*3+1)/2; // cyberlimbs here
+	return 8+(stat(body)*3+1)/2; // cyberlimbs here
 }
 int CI::max_ko() {
-	return 8+(stats[body]+1)/2; // cyberlimbs here
+	return 8+(stat(body)+1)/2; // cyberlimbs here
 }
 int CI::max_stun() {
-	return 8+(stats[willpower]+1)/2; 
+	return 8+(stat(willpower)+1)/2; 
 }
 
 int CI::mali() {
@@ -54,7 +54,7 @@ void CI::attack_unarmed_combat(CI& enemy) {
 	if(ko())return;
 	int net = eval_net({agility,unarmed_combat},enemy,{reaction,intuition},false);
 	if(net >0){
-		enemy.resist_armor_body(stats[strength]+net,true);
+		enemy.resist_armor_body(stat(strength)+net,true);
 	}
 	else {
 		_DEBUG_MSG(1,"%s dodged\n",enemy.id().c_str());
@@ -65,7 +65,7 @@ void CI::resist_armor_body(int d, int ap, bool stun){
 	_DEBUG_MSG(1,"%s resists %i with %i AP ",id().c_str(),d,ap);	
 	stats[armor]+=ap;
 	int dmg = max(0,d-eval({armor,body},false));
-	if(stun || dmg < stats[armor]){
+	if(stun || dmg < stat(armor)){
 		take_stun(dmg);
 	}
 	else
@@ -74,6 +74,8 @@ void CI::resist_armor_body(int d, int ap, bool stun){
 	}
 	stats[armor]-=ap;
 }
+
+
 
 void CI::take_stun(int stun) {
 	_DEBUG_MSG(1," => -%i STUN\n",stun);
@@ -103,8 +105,8 @@ int CI::eval(std::initializer_list<Stat> statslist, bool apply_mali) {
 	int sum=0;
 	_DEBUG_MSG(1,"[");
 	for(auto s : statslist) {
-		sum+=stats[s];
-		_DEBUG_MSG(1,"%s(%i)+",abbrev[s].c_str(),stats[s]);
+		sum+=stat(s);
+		_DEBUG_MSG(1,"%s(%i)+",stats_abbrev[s].c_str(),stat(s));
 	}
 	int mal = this->mali();
 	if(apply_mali && mal)
@@ -119,28 +121,70 @@ int CI::eval(std::initializer_list<Stat> statslist, bool apply_mali) {
 bool  operator< ( CI& c1, CI& c2) {
 	if(c1.has_acted && !c2.has_acted) return false;
 	if(c2.has_acted && !c1.has_acted) return true;
-	if(c1.current_initiative() == c2.current_initiative())return c1.stats[edge]>c2.stats[edge];
+	if(c1.current_initiative() == c2.current_initiative())return c1.stat(edge)>c2.stat(edge);
 	return c1.current_initiative() > c2.current_initiative();
 }
 bool  operator> ( CI& c1, CI& c2) {
 	if(c1.has_acted && !c2.has_acted) return true;
 	if(c2.has_acted && !c1.has_acted) return false;
-	if(c1.current_initiative() == c2.current_initiative())return c1.stats[edge]<c2.stats[edge];
+	if(c1.current_initiative() == c2.current_initiative())return c1.stat(edge)<c2.stat(edge);
 	return c1.current_initiative() < c2.current_initiative();
 }
 
 
-int CI::uid() 
+int Character::uid()
 {
-	return reference.uid;
+	return uuid;
+}
+int CI::uid(){return reference.uid();}
+
+string CHR::id() {
+	stringstream ss;
+	ss << alias << "#" << uid();
+	return ss.str();
 }
 string CI::id()
 {
-	return reference.alias + "#" + tos(uid());
+	return reference.id();
 }
 
+string CHR::description() {
+	stringstream ss;
+	ss << id();
+	return ss.str();
+}
 string CI::description()
 {
-	return id()  + ": "+ tos(phys_dmg) + "/" + tos(max_phys()) + " PHYS, " + tos(stun_dmg) + "/" + tos(max_stun()) + " STUN, INIT: " + tos(current_initiative()) + ", ACTIVE: " + tos((int)!has_acted);
+	stringstream ss;
+	ss << reference.description()  << ": "<< phys_dmg << "/" << max_phys() << " PHYS, " << stun_dmg << "/" << max_stun() << " STUN, INIT: " <<current_initiative()<< ", ACTIVE: " << !has_acted;
+	return ss.str();
+}
+
+int CI::stat(int s) {
+	return stats[s] + statgroups[group[s]];
+}
+int CHR::stat(int s) {
+	return stats[s] + statgroups[group[s]];
+}
+string CI::overview()
+{
+	stringstream ss;
+	ss << description();
+	for (int skill = body; skill!=num_stat;skill++)
+	{
+		ss << endl <<stats_abbrev[skill] << ": " << stat(skill);	
+	}
+	return ss.str();
+}
+
+string CHR::overview()
+{
+	stringstream ss;
+	ss << description();
+	for (int skill = body; skill!=num_stat;skill++)
+	{
+		ss << endl <<stats_abbrev[skill] << ": " << stat(skill);	
+	}
+	return ss.str();
 }
 

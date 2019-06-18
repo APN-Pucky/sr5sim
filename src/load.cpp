@@ -7,13 +7,14 @@
 #include "rapidxml_utils.hpp"
 #include "character.h"
 #include "debug.h"
+#include "utils.h"
 
 using namespace rapidxml;
 using namespace std;
 
-const Character load_character(const std::string & filename, bool do_warn_on_missing=true)
+void load_character(Character& chr,const std::string & filename, bool do_warn_on_missing=true)
 {
-  Character chr;
+ 
   file<> xmlFile(filename.c_str());
   xml_document<> doc;
   doc.parse<0>(xmlFile.data());
@@ -28,7 +29,12 @@ const Character load_character(const std::string & filename, bool do_warn_on_mis
   for(;node;node = node->next_sibling())
   {
     int val = atoi(node->first_node("totalvalue")->value());
-    if(strcmp(node->first_node("name")->value(),"BOD")==0) chr.stats[Stat::body] = val;
+    string name = string(node->first_node("name")->value());
+    int index = position(name,stats_abbrev,num_stat); 
+    if(index != num_stat)
+	chr.stats[index] = val;
+    _DEBUG_MSG(4,"-- Loading attribute %s(%i)=%i,%i\n",name.c_str(),index,val,chr.stats[index]);
+    /*if(strcmp(node->first_node("name")->value(),"BOD")==0) chr.stats[Stat::body] = val;
     else if(strcmp(node->first_node("name")->value(),"AGI")==0) chr.stats[Stat::agility] = val;
     else if(strcmp(node->first_node("name")->value(),"REA")==0) chr.stats[Stat::reaction] = val;
     else if(strcmp(node->first_node("name")->value(),"STR")==0) chr.stats[Stat::strength] = val;
@@ -43,23 +49,46 @@ const Character load_character(const std::string & filename, bool do_warn_on_mis
     else if(strcmp(node->first_node("name")->value(),"ESS")==0) chr.stats[Stat::essence] = val;
     else if(strcmp(node->first_node("name")->value(),"DEP")==0) chr.stats[Stat::depth] = val;
     else {};
+    */
   }
   
   
   node = top->first_node("newskills")->first_node("skills")->first_node("skill");
   for(;node;node = node->next_sibling())
   {
+    _DEBUG_MSG(4,"-- Loading skills\n");
     int base = atoi(node->first_node("base")->value());
     int karma = atoi(node->first_node("karma")->value());
-    if(strcmp(node->first_node("suid")->value(),"4fcd40cb-4b02-4b7e-afcb-f44d46cd5706")==0) chr.stats[Stat::unarmed_combat] = karma + base;  
+    if(node->first_node("name")) {
+    	string name = string(node->first_node("name")->value());
+    	int index = position(name,stats_name,num_stat); 
+    	if(index != num_stat)
+		chr.stats[index] = base+karma;
+    }
+
+    //if(strcmp(node->first_node("suid")->value(),"4fcd40cb-4b02-4b7e-afcb-f44d46cd5706")==0) chr.stats[Stat::unarmed_combat] = karma + base;  
 	
   }
   node = top->first_node("newskills")->first_node("groups")->first_node("group");
   for(;node;node = node->next_sibling())
   {
+    _DEBUG_MSG(4,"-- Loading groups\n");
     int base = atoi(node->first_node("base")->value());
     int karma = atoi(node->first_node("karma")->value());
-    if(strcmp(node->first_node("name")->value(),"Close Combat")==0) chr.stats[Stat::unarmed_combat] += karma+base;
+    string name = string(node->first_node("name")->value());
+    int index = position(name,statgroups_name,num_statgroup); 
+    if(index != num_statgroup)
+	chr.stats[index] = base+karma;
+
+    /*if(strcmp(node->first_node("name")->value(),"Acting")==0) chr.statgroups[acting] += karma+base;
+    if(strcmp(node->first_node("name")->value(),"Outdoors")==0) chr.statgroups[outdoors] += karma+base;
+    if(strcmp(node->first_node("name")->value(),"Close Combat")==0) chr.statgroups[Stat::close_combat] += karma+base;
+    if(strcmp(node->first_node("name")->value(),"Engineering")==0) chr.statgroups[engineering] += karma+base;
+    if(strcmp(node->first_node("name")->value(),"Stealth")==0) chr.statgroups[stealth] += karma+base;
+    if(strcmp(node->first_node("name")->value(),"Firearms")==0) chr.statgroups[firearms] += karma+base;
+    if(strcmp(node->first_node("name")->value(),"Electronics")==0) chr.statgroups[electronics] += karma+base;
+    if(strcmp(node->first_node("name")->value(),"Stealth")==0) chr.statgroups[stealth] += karma+base;
+    */
   }
 
   node = top->first_node("improvements")->first_node("improvement");
@@ -105,5 +134,5 @@ const Character load_character(const std::string & filename, bool do_warn_on_mis
   chr.stats[Stat::armor] = high_base+bonus;
   
   _DEBUG_MSG(3," and %i ARM\n", chr.stats[armor]);
-  return chr;
+  _DEBUG_MSG(4, "Loaded:\n %s\n", chr.overview().c_str());
 }

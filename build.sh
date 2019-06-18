@@ -16,7 +16,7 @@ else
 		./Release/sr5test.exe #windows
 		./Release/sr5sim.exe #windows
 	else
-		./sr5sim #linux
+		./sr5test #linux
 		./sr5sim #linux
 	fi
 fi

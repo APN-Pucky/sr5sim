@@ -3,33 +3,26 @@
 #include <string>
 #include <map>
 #include <array>
+#include "sr5.h"
 
 using namespace std;
-
-
-enum Stat {
-	//attributes
-  	body,agility,reaction,strength,willpower,logic,intuition,charisma,edge,essence,magic,resonance,depth,
-	//skills
-	armor, unarmed_combat,weapon,
-	num_stat,
-};
-
-const string abbrev[num_stat] = {
-	"BOD","AGI", "REA","STR","WIL","LOG","INT","CHA","EDG", "ESS", "MAG", "RES","DEP",
-	"ARM","UCC","WEP",
-};
 
 
 
 struct Character
 {
   array<int,num_stat> stats = {-1}; 
+  array<int,num_statgroup> statgroups = {0}; 
   //unordered_map<Stat,int> stats;
   //unordered_map<string,string> armor;
   string name,alias;
-  int uid = 0;
-  
+  int uuid = 0;
+
+  string description();
+  string overview();
+  string id();
+  int stat(int s);
+  int uid();
 };
 
 
@@ -46,10 +39,11 @@ class CharacterInstance
 		bool has_acted = false;
 		//Character chr;
 		array<int,num_stat> stats;
+		array<int,num_statgroup> statgroups;
 		//unordered_map<Stat,int> stats;
 		
 	public:
-		CharacterInstance(Character& chr) :reference(chr), stats(chr.stats) {}
+		CharacterInstance(Character& chr) :reference(chr), stats(chr.stats), statgroups(chr.statgroups) {}
 		//~CharacterInstance() {}
 		CharacterInstance(const CharacterInstance&)  = default;
 		//CharacterInstance& operator =(const CharacterInstance&& x);
@@ -81,9 +75,12 @@ class CharacterInstance
 		//CharacterInstance& operator =(const CharacterInstance&& x);
 		// 
 		string description();
-		int uid();
+		string overview();
 		string id();
+  		int stat(int s);
+		int uid();
 };
 
-
 using CI = CharacterInstance;
+using CHR = Character;
+

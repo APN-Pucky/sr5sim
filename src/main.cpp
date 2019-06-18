@@ -7,11 +7,13 @@ using namespace std;
 int main(int argc,char** argv)
 {
 	debug_print++;
-	Character c1 = load_character("../own/nick.chum5");
-	Character c2 = load_character("../own/ogir.chum5");
+	Character c1 ; 
+	load_character(c1,"../own/nick.chum5");
+	Character c2 ; 
+	load_character(c2,"../own/ogir.chum5");
 	debug_print--;
 	SimData sd;
-	c1.uid = 1;
+	c1.uuid = 1;
 	/*
 	// 7*3=21
 	Character c1,c2;

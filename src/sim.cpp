@@ -11,7 +11,11 @@ class Field
 public:
 	SimData& simdata;
 	vector<CI> cis;
-	Field(std::initializer_list<Character> chars,SimData& sd) : simdata(sd) {for(auto c : chars)cis.emplace_back(CI(c));}
+	Field(std::initializer_list<Character> chars,SimData& sd) : simdata(sd) {
+		for(auto c : chars){
+			cis.emplace_back(CI(c));
+		}
+	}
 };
 
 

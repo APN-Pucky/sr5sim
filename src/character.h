@@ -43,6 +43,7 @@ class CharacterInstance
 		bool has_acted = false;
 		//Character chr;
 		array<int,num_stat> mod_stats={0};
+		Weapon current_weapon;
 		//array<int,num_statgroup> statgroups;
 		//unordered_map<Stat,int> stats;
 		
@@ -68,7 +69,7 @@ class CharacterInstance
 		bool alive() const;
 		// interact
 		void act(vector<CharacterInstance>& cs);
-		void attack_weapon(CharacterInstance& c, Weapon w );
+		void attack_weapon(CharacterInstance& c);
 		void attack_unarmed_combat(CharacterInstance& c);
 		void resist_armor_body(int d, int ap=0, bool stun=false);
 		void take_phys(int d);

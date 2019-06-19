@@ -34,9 +34,11 @@ TEST_CASE("Battle","[battle]") {
 	for(int i =0; i < 1000;++i) {
 	CI c1(p1);
 	CI c2(p2);
+	c1.current_weapon = ucc;
+	c2.current_weapon = ucc;
 	while(!c1.ko() && !c2.ko()) {	
-		c1.attack_weapon(c2,ucc); 
-		c2.attack_weapon(c1,ucc);
+		c1.attack_weapon(c2); 
+		c2.attack_weapon(c1);
 	}
 	if(!c1.ko()) w1++;
 	if(!c2.ko()) w2++;

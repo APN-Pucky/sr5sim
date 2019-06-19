@@ -54,19 +54,25 @@ void CI::act(vector<CI>& cis) {
 	has_acted = true;
 	if(ko())return;
 	if(uid()==1) {
-		attack_weapon(cis[1],reference.weapon("Spurs"));
+		current_weapon = reference.weapon("Spurs");
+		attack_weapon(cis[1]);
 	}
 	else {
-		attack_weapon(cis[1],reference.weapon("Unarmed Attack"));
+		current_weapon = reference.weapon("Unarmed Attack");
+		attack_weapon(cis[1]);
 	}
 	//attack_unarmed_combat(cis[1]);
 }
 
-void CI::attack_weapon(CI& enemy, Weapon w) {
+void CI::attack_weapon(CI& enemy) {
 	if(ko())return;
+	const Weapon w(current_weapon);
 	int net = 0;
 	if(w.useskill==close_combat || group[w.useskill] == close_combat) {
-		net = eval_net({w.useattr,w.useskill,reach},physical_limit(),enemy,{reaction,intuition},enemy.physical_limit(),false);
+		int dreach = enemy.current_weapon.reach+enemy.stat(reach)-w.reach-stat(reach);
+		enemy.mod_stats[reach] += dreach;
+		net = eval_net({w.useattr,w.useskill},physical_limit(),enemy,{reaction,intuition,reach},enemy.physical_limit(),false);
+		enemy.mod_stats[reach] -=dreach;
 	}
 	else{
 		net = eval_net({w.useattr,w.useskill},w.accuracy?w.accuracy:physical_limit(),enemy,{reaction,intuition},enemy.physical_limit(),false);
@@ -80,8 +86,8 @@ void CI::attack_weapon(CI& enemy, Weapon w) {
 }
 
 void CI::attack_unarmed_combat(CI& enemy) {
-	//attack_weapon(enemy,reference.weapon("Unarmed Attack"));
-	/*if(ko())return;
+	/*attack_weapon(enemy,reference.weapon("Unarmed Attack"));
+	if(ko())return;
 	int net = eval_net({agility,unarmed_combat,reach},physical_limit(),enemy,{reaction,intuition},enemy.physical_limit(),false);
 	if(net >0){
 		enemy.resist_armor_body(stat(strength)+net,0,true);

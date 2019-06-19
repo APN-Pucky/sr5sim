@@ -27,7 +27,7 @@ enum Stat {
 	automatics,longarms,pistols,
 	perception,
 	//Specs
-	cyber_implants, axes,
+	cyber_implants, axes, swords,
 	assault_rifles,shotguns,semi_automatics,
 	visual,
 
@@ -49,7 +49,7 @@ const string stats_name[num_stat] = {
 	"Automatics","Longarms","Pistols",
 	"Perception",
 	//specs
-	"Cyber Implants","Axes",
+	"Cyber Implants","Axes", "Swords",
 	"Assault Rifles","Shotguns","Semi-Automatics",
 	"Visual",
 };
@@ -69,7 +69,7 @@ const int skill[num_stat] = {
 	zero,zero,zero,
 	zero,
 	//Specs
-	unarmed_combat,blades,
+	unarmed_combat,blades, blades,
 	automatics,longarms,pistols,
 	perception,
 };
@@ -87,7 +87,7 @@ const int group[num_stat] = {
 	firearms,firearms,firearms,
 	zero,
 	//specs
-	close_combat,close_combat,
+	close_combat,close_combat, close_combat,
 	firearms,firearms,firearms,
 	zero,
 };

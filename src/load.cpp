@@ -65,16 +65,16 @@ void load_character(Character& chr,const std::string & filename, bool do_warn_on
     	string name = string(node->first_node("name")->value());
     	int index = position(name,stats_name,num_stat); 
     	if(index != num_stat)
-		chr.stats[index] = base+karma;
+			chr.stats[index] = base+karma;
 
-  	auto t = node->first_node("specs");
-	if(t)t=t->first_node("spec");
-  	for(;t;t = t->next_sibling())
-	{
-    		name = string(t->first_node("name")->value());
-    		int index = position(name,stats_name,num_stat); 
-    		if(index != num_stat) chr.stats[index]=2;
-	}
+		auto t = node->first_node("specs");
+		if(t)t=t->first_node("spec");
+		for(;t;t = t->next_sibling())
+		{
+			name = string(t->first_node("name")->value());
+			int index = position(name,stats_name,num_stat); 
+			if(index != num_stat) chr.stats[index]=2;
+		}
     }
 
     //if(strcmp(node->first_node("suid")->value(),"4fcd40cb-4b02-4b7e-afcb-f44d46cd5706")==0) chr.stats[Stat::unarmed_combat] = karma + base;  
@@ -163,13 +163,13 @@ void load_character(Character& chr,const std::string & filename, bool do_warn_on
   node = top->first_node("weapons")->first_node("weapon");
   for(;node;node=node->next_sibling())
   {
-  	
   	Weapon w;
  	auto wname = string(node->first_node("name")->value());
 	w.name = wname;
   	_DEBUG_MSG(3,"-- %s\n",w.name.c_str());
 	auto us = node->first_node("spec")->value();
 	int index = 0;
+	w.useskill = zero;
 	if(strcmp(us,"")!=0){
 		index = position(string(us),stats_name,num_stat); 
 	}
@@ -184,7 +184,7 @@ void load_character(Character& chr,const std::string & filename, bool do_warn_on
 			index = position(us2,stats_name,num_stat); 
 		}
 	}
-    	if(index != num_stat)
+    if(index != num_stat)
 		w.useskill=static_cast<Stat>(index);
 	auto c = node->first_node("accuracy")->value();
 	if(c[0]=='P'){

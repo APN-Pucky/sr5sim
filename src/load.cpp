@@ -5,9 +5,10 @@
 #include <cstring>
 #include "rapidxml.hpp"
 #include "rapidxml_utils.hpp"
-#include "character.h"
 #include "debug.h"
 #include "utils.h"
+#include "character.h"
+#include "weapons.h"
 
 using namespace rapidxml;
 using namespace std;
@@ -30,9 +31,10 @@ void load_character(Character& chr,const std::string & filename, bool do_warn_on
   {
     int val = atoi(node->first_node("totalvalue")->value());
     string name = string(node->first_node("name")->value());
-    int index = position(name,stats_abbrev,num_stat); 
+    int index = position3(name,stats_name,num_stat);
     if(index != num_stat)
 	chr.stats[index] = val;
+    //MAGAdept fix?
     _DEBUG_MSG(4,"-- Loading attribute %s(%i)=%i,%i\n",name.c_str(),index,val,chr.stats[index]);
     /*if(strcmp(node->first_node("name")->value(),"BOD")==0) chr.stats[Stat::body] = val;
     else if(strcmp(node->first_node("name")->value(),"AGI")==0) chr.stats[Stat::agility] = val;
@@ -64,6 +66,15 @@ void load_character(Character& chr,const std::string & filename, bool do_warn_on
     	int index = position(name,stats_name,num_stat); 
     	if(index != num_stat)
 		chr.stats[index] = base+karma;
+
+  	auto t = node->first_node("specs");
+	if(t)t=t->first_node("spec");
+  	for(;t;t = t->next_sibling())
+	{
+    		name = string(t->first_node("name")->value());
+    		int index = position(name,stats_name,num_stat); 
+    		if(index != num_stat) chr.stats[index]=2;
+	}
     }
 
     //if(strcmp(node->first_node("suid")->value(),"4fcd40cb-4b02-4b7e-afcb-f44d46cd5706")==0) chr.stats[Stat::unarmed_combat] = karma + base;  
@@ -76,8 +87,8 @@ void load_character(Character& chr,const std::string & filename, bool do_warn_on
     int base = atoi(node->first_node("base")->value());
     int karma = atoi(node->first_node("karma")->value());
     string name = string(node->first_node("name")->value());
-    int index = position(name,statgroups_name,num_statgroup); 
-    if(index != num_statgroup)
+    int index = position(name,stats_name,num_stat); 
+    if(index != num_stat)
 	chr.stats[index] = base+karma;
 
     /*if(strcmp(node->first_node("name")->value(),"Acting")==0) chr.statgroups[acting] += karma+base;
@@ -91,12 +102,7 @@ void load_character(Character& chr,const std::string & filename, bool do_warn_on
     */
   }
 
-  node = top->first_node("improvements")->first_node("improvement");
-  for(;node;node = node->next_sibling())
-  {
-    auto a = node->first_node("improvedname");
-    if(a && strcmp(a->value(),"Unarmed Combat")==0) chr.stats[Stat::unarmed_combat] += 2;
-  }
+  
   node = top->first_node("cyberwares")->first_node("cyberware");
   for(;node;node = node->next_sibling())
   {
@@ -119,20 +125,65 @@ void load_character(Character& chr,const std::string & filename, bool do_warn_on
   {
     auto name = node->first_node("name")->value();
     auto val = string(node->first_node("armor")->value());
-    if(strcmp(name,"Generic CCOB")==0) val.insert(0,"+"); //Cyber works as Bonus
+    //if(strcmp(name,"Generic CCOB")==0) val.insert(0,"+"); //Cyber works as Bonus
     if(val.rfind(plus,0)==0){
     	bonus += stoi(val.substr(1,val.length()-1));
     }
     else
     {
-		if(stoi(val)>high_base)
-		{
-			high_base = stoi(val);
-		}
+	if(stoi(val)>high_base)
+	{
+		high_base = stoi(val);
+	}
     }
   }
+
+
   chr.stats[Stat::armor] = high_base+bonus;
+
   
+  _DEBUG_MSG(3,"Loading Weapons");
+  node = top->first_node("weapons")->first_node("weapon");
+  for(;node;node->next_sibling())
+  {
+  	Weapon w;
+ 	auto name = string(node->first_node("name")->value());
+	w.name = name;
+	auto us = node->first_node("useskill");
+	if(us){}
+	else{
+		us = node ->first_node("category");
+	}
+	int index = position(string(us->value()),stats_name,num_stat); 
+    	if(index != num_stat)
+		w.useskill=index;
+	w.accuracy = atoi(node->first_node("accuracy"));
+	w.rc = atoi(node->first_node("rc"));
+	w.ap = atoi(node->first_node("ap"));
+	w.reach = atoi(node->first_node("reach"));
+	 
+	//TODO accessories
+
+  }
+
+  node = top->first_node("improvements")->first_node("improvement");
+  for(;node;node = node->next_sibling())
+  {
+    auto a = node->first_node("improvedname");
+    if(a){
+    }
+    else{
+    	a = node->first_node("improvementttype");
+    }
+	int val = atoi(node->first_node("val"));
+    	string name = string(a->value());
+    	int index = position(name,stats_name,num_stat); 
+    	if(index != num_stat)
+		chr.stats[index] += val;
+
+  }
   _DEBUG_MSG(3," and %i ARM\n", chr.stats[armor]);
+
+
   _DEBUG_MSG(4, "Loaded:\n %s\n", chr.overview().c_str());
 }

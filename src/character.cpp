@@ -10,11 +10,11 @@
 
 using namespace std;
 
-int CI::current_initiative() {
+int CI::current_initiative() const{
 	return current_init_roll-mali();
 }
 
-int CI::initiative() {
+int CI::initiative() const{
 	int s = stat(reaction)+stat(intuition) ;
 	_DEBUG_MSG(1, "INIT");
 	_DEBUG_MSG(2, " %i+%id6",s,init_dice);
@@ -22,24 +22,28 @@ int CI::initiative() {
 	_DEBUG_MSG(1, " => %i\n",s);
 	return s;
 }
+int CI::physical_limit() const{ return (stat(strength)*2+stat(body)+stat(reaction)+2)/3;}
+int CI::mental_limit() const{ return (stat(logic)*2+stat(intuition)+stat(willpower)+2)/3;}
+int CI::social_limit() const{ return (stat(charisma)*2+stat(willpower)+stat(essence)+2)/3;}
 
-int CI::max_phys() {
-	return 8+(stat(body)*3+1)/2; // cyberlimbs here
+int CI::max_phys() const{
+	return 8+(stat(body)*3+1)/2+stat(physicalcm); // cyberlimbs here
 }
-int CI::max_ko() {
-	return 8+(stat(body)+1)/2; // cyberlimbs here
+int CI::max_ko() const{
+	return 8+(stat(body)+1)/2+stat(physicalcm); // cyberlimbs here
 }
-int CI::max_stun() {
+int CI::max_stun() const{
 	return 8+(stat(willpower)+1)/2; 
 }
 
-int CI::mali() {
+int CI::mali() const{
 	return phys_dmg/3+stun_dmg/3;
 }
-bool CI::ko() {
+bool CI::ko() const{
 	return max_stun()<stun_dmg || max_ko()<phys_dmg;
 }
-bool CI::alive() {
+bool CI::alive() const
+{
 	return max_phys()>phys_dmg;
 }
 
@@ -52,7 +56,7 @@ void CI::act(vector<CI>& cis) {
 
 void CI::attack_unarmed_combat(CI& enemy) {
 	if(ko())return;
-	int net = eval_net({agility,unarmed_combat},enemy,{reaction,intuition},false);
+	int net = eval_net({agility,unarmed_combat},physical_limit(),enemy,{reaction,intuition},enemy.physical_limit(),false);
 	if(net >0){
 		enemy.resist_armor_body(stat(strength)+net,true);
 	}
@@ -63,8 +67,8 @@ void CI::attack_unarmed_combat(CI& enemy) {
 
 void CI::resist_armor_body(int d, int ap, bool stun){
 	_DEBUG_MSG(1,"%s resists %i with %i AP ",id().c_str(),d,ap);	
-	stats[armor]+=ap;
-	int dmg = max(0,d-eval({armor,body},false));
+	mod_stats[armor]+=ap;
+	int dmg = max(0,d-eval({armor,body},0,false));
 	if(stun || dmg < stat(armor)){
 		take_stun(dmg);
 	}
@@ -72,7 +76,7 @@ void CI::resist_armor_body(int d, int ap, bool stun){
 	{
 		take_phys(dmg);
 	}
-	stats[armor]-=ap;
+	mod_stats[armor]-=ap;
 }
 
 
@@ -92,21 +96,21 @@ void CI::init() {
 }
 
 
-int CI::eval_net( std::initializer_list<Stat> stats1, CI& enemy, std::initializer_list<Stat> stats2, bool apply_enemy_mali,bool apply_own_mali){
+int CI::eval_net( std::initializer_list<Stat> stats1,int limit1, CI& enemy, std::initializer_list<Stat> stats2,int limit2, bool apply_enemy_mali,bool apply_own_mali){
 	_DEBUG_MSG(1,"(");
-	auto first = eval(stats1,apply_own_mali);
+	auto first = eval(stats1,limit1,apply_own_mali);
 	_DEBUG_MSG(1,") vs (");
-	auto second = enemy.eval(stats2,apply_enemy_mali);
+	auto second = enemy.eval(stats2,limit2,apply_enemy_mali);
 	_DEBUG_MSG(1,")=%i ", first-second);
 	return first-second;
 }
 
-int CI::eval(std::initializer_list<Stat> statslist, bool apply_mali) {
+int CI::eval(std::initializer_list<Stat> statslist,int limit, bool apply_mali) {
 	int sum=0;
 	_DEBUG_MSG(1,"[");
 	for(auto s : statslist) {
 		sum+=stat(s);
-		_DEBUG_MSG(1,"%s(%i)+",stats_abbrev[s].c_str(),stat(s));
+		_DEBUG_MSG(1,"%s(%i)+",stats_abbrev(s).c_str(),stat(s));
 	}
 	int mal = this->mali();
 	if(apply_mali && mal)
@@ -115,7 +119,12 @@ int CI::eval(std::initializer_list<Stat> statslist, bool apply_mali) {
 		sum-=mal;
 	}
 	_DEBUG_MSG(1,"]");
-	return hits(sum);
+	int h = hits(sum);
+	if(limit && h>limit) {
+		h = limit;
+		_DEBUG_MSG(1,">%i=%i",limit,limit);
+	}
+	return h;
 }
 
 bool  operator< ( CI& c1, CI& c2) {
@@ -132,58 +141,60 @@ bool  operator> ( CI& c1, CI& c2) {
 }
 
 
-int Character::uid()
+int Character::uid() const
 {
 	return uuid;
 }
-int CI::uid(){return reference.uid();}
+int CI::uid() const{return reference.uid();}
 
-string CHR::id() {
+string CHR::id() const
+{
 	stringstream ss;
 	ss << alias << "#" << uid();
 	return ss.str();
 }
-string CI::id()
+string CI::id() const
 {
 	return reference.id();
 }
 
-string CHR::description() {
+string CHR::description() const
+{
 	stringstream ss;
 	ss << id();
 	return ss.str();
 }
-string CI::description()
+string CI::description() const
 {
 	stringstream ss;
 	ss << reference.description()  << ": "<< phys_dmg << "/" << max_phys() << " PHYS, " << stun_dmg << "/" << max_stun() << " STUN, INIT: " <<current_initiative()<< ", ACTIVE: " << !has_acted;
 	return ss.str();
 }
 
-int CI::stat(int s) {
-	return stats[s] + statgroups[group[s]];
+int CHR::stat(int s) const{
+	return stats[s] + stats[group[s]] + stats[skill[s]];
 }
-int CHR::stat(int s) {
-	return stats[s] + statgroups[group[s]];
+int CI::stat(int s) const{
+	return reference.stat(s) + mod_stats[s] +mod_stats[group[s]] + mod_stats[skill[s]];
 }
-string CI::overview()
+string CI::overview() const
 {
 	stringstream ss;
 	ss << description();
 	for (int skill = body; skill!=num_stat;skill++)
 	{
-		ss << endl <<stats_abbrev[skill] << ": " << stat(skill);	
+		ss << endl <<stats_abbrev(skill) << ": " << stat(skill);	
 	}
 	return ss.str();
 }
 
-string CHR::overview()
+string CHR::overview() const
 {
 	stringstream ss;
 	ss << description();
 	for (int skill = body; skill!=num_stat;skill++)
 	{
-		ss << endl <<stats_abbrev[skill] << ": " << stat(skill);	
+		ss << endl <<stats_abbrev(skill) << ": " << stat(skill);	
 	}
 	return ss.str();
 }

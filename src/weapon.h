@@ -1,3 +1,5 @@
+#ifndef WEAPON_H_INCLUDED
+#define WEAPON_H_INCLUDED
 #include <string>
 #include "sr5.h"
 enum Mode {
@@ -7,14 +9,20 @@ enum Mode {
 class Weapon {
 public:
 	string name;
-	Stat attr = agility;
+	Stat useattr = agility;
 	Stat useskill;
-	int reach;
+	int reach= 0;
 	int damage = 0;
-	int damage_skill = zero;
-	int ap;
-	int rc;
+	Stat damage_skill = zero;
+	int damage_type = physical;
+	int ap=0;
+	int rc=0;
 	int accuracy = 0;
-	Mode mode;	
-	bool smartlink;
+	Limit accuracy_limit = unlimited;
+	Mode mode =SS;	
+	bool smartlink =false;
+	bool launcher = false;
+
+	string description() const;
 };
+#endif

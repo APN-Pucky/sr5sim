@@ -38,17 +38,17 @@ int main(int argc,char** argv)
 	int wins = 0;
 	int loss = 0;
 	int stall = 0;
-	debug_print = 0;
+	debug_print=0;
 	while(wins+loss+stall < 100000)
 	{
 		simulate(sd,{c1,c2});
 		if(sd.res==WIN)wins++;
 		if(sd.res==LOSS)loss++;
 		if(sd.res==STALL)stall++;
-		//cout << endl << "RES: " << 1.*wins/(loss+wins+stall) << " " << wins << "/" << loss << "/" << stall << endl;
 	}
 	cout << endl << "RES: " << 1.*wins/(loss+wins+stall) << " " << wins << "/" << loss << "/" << stall << endl;
-	debug_print = 2;
+	debug_print--;
+	debug_print--;
 	
 	
 }

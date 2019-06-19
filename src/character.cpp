@@ -17,29 +17,31 @@ int CI::current_initiative() const{
 int CI::initiative() const{
 	int s = stat(reaction)+stat(intuition) ;
 	_DEBUG_MSG(1, "INIT");
-	_DEBUG_MSG(2, " %i+%id6",s,init_dice);
-	s+= sum(init_dice);
+	_DEBUG_MSG(2, " %i+%id6",s,init_dice + stat(initiative_dice));
+	s += sum(init_dice+stat(initiative_dice));
 	_DEBUG_MSG(1, " => %i\n",s);
 	return s;
 }
+int CI::limit(Limit l) const {return l==physical?physical_limit():l==mental?mental_limit():l==social?social_limit():0;}
 int CI::physical_limit() const{ return (stat(strength)*2+stat(body)+stat(reaction)+2)/3;}
 int CI::mental_limit() const{ return (stat(logic)*2+stat(intuition)+stat(willpower)+2)/3;}
 int CI::social_limit() const{ return (stat(charisma)*2+stat(willpower)+stat(essence)+2)/3;}
 
 int CI::max_phys() const{
-	return 8+(stat(body)*3+1)/2+stat(physicalcm); // cyberlimbs here
+	return 8+(stat(body)*3+1)/2+stat(physicalcm); 
 }
 int CI::max_ko() const{
-	return 8+(stat(body)+1)/2+stat(physicalcm); // cyberlimbs here
+	return 8+(stat(body)+1)/2+stat(physicalcm); 
 }
 int CI::max_stun() const{
 	return 8+(stat(willpower)+1)/2; 
 }
 
 int CI::mali() const{
-	return phys_dmg/3+stun_dmg/3;
+	return reference.pain_editor?0:(phys_dmg/3+stun_dmg/3);
 }
 bool CI::ko() const{
+	if(reference.pain_editor)return !alive();
 	return max_stun()<stun_dmg || max_ko()<phys_dmg;
 }
 bool CI::alive() const
@@ -51,24 +53,48 @@ void CI::act(vector<CI>& cis) {
 	_DEBUG_MSG(1,"TURN: %s\n", description().c_str());
 	has_acted = true;
 	if(ko())return;
-	attack_unarmed_combat(cis[1]);
+	if(uid()==1) {
+		attack_weapon(cis[1],reference.weapon("Spurs"));
+	}
+	else {
+		attack_weapon(cis[1],reference.weapon("Unarmed Attack"));
+	}
+	//attack_unarmed_combat(cis[1]);
 }
 
-void CI::attack_unarmed_combat(CI& enemy) {
+void CI::attack_weapon(CI& enemy, Weapon w) {
 	if(ko())return;
-	int net = eval_net({agility,unarmed_combat},physical_limit(),enemy,{reaction,intuition},enemy.physical_limit(),false);
+	int net = 0;
+	if(w.useskill==close_combat || group[w.useskill] == close_combat) {
+		net = eval_net({w.useattr,w.useskill,reach},physical_limit(),enemy,{reaction,intuition},enemy.physical_limit(),false);
+	}
+	else{
+		net = eval_net({w.useattr,w.useskill},w.accuracy?w.accuracy:physical_limit(),enemy,{reaction,intuition},enemy.physical_limit(),false);
+	}
 	if(net >0){
-		enemy.resist_armor_body(stat(strength)+net,true);
+		enemy.resist_armor_body(w.damage+stat(w.damage_skill)+net,w.ap,w.damage_type==stun);
 	}
 	else {
 		_DEBUG_MSG(1,"%s dodged\n",enemy.id().c_str());
 	}
 }
 
+void CI::attack_unarmed_combat(CI& enemy) {
+	//attack_weapon(enemy,reference.weapon("Unarmed Attack"));
+	/*if(ko())return;
+	int net = eval_net({agility,unarmed_combat,reach},physical_limit(),enemy,{reaction,intuition},enemy.physical_limit(),false);
+	if(net >0){
+		enemy.resist_armor_body(stat(strength)+net,0,true);
+	}
+	else {
+		_DEBUG_MSG(1,"%s dodged\n",enemy.id().c_str());
+	}*/
+}
+
 void CI::resist_armor_body(int d, int ap, bool stun){
 	_DEBUG_MSG(1,"%s resists %i with %i AP ",id().c_str(),d,ap);	
 	mod_stats[armor]+=ap;
-	int dmg = max(0,d-eval({armor,body},0,false));
+	int dmg = max(0,d-eval({armor,body, damage_resistance},0,false));
 	if(stun || dmg < stat(armor)){
 		take_stun(dmg);
 	}
@@ -199,3 +225,11 @@ string CHR::overview() const
 	return ss.str();
 }
 
+Weapon& CHR::weapon(string name) 
+{
+	for(Weapon& w : weapons)
+	{
+		if(w.name.compare(name)==0)return w;
+	}
+	return *(new Weapon());
+}

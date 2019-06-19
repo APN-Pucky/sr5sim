@@ -1,1 +1,5 @@
 LIMITS
+
+Weapons
+Cyberware
+Bioware

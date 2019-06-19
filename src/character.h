@@ -19,12 +19,14 @@ struct Character
   //unordered_map<string,string> armor;
   string name,alias;
   int uuid = 0;
+  bool pain_editor= false;
 
   string description() const;
   string overview() const;
   string id() const;
   int stat(int s) const;
   int uid() const;
+  Weapon& weapon(string name);
 };
 
 
@@ -51,6 +53,7 @@ class CharacterInstance
 		//CharacterInstance& operator =(const CharacterInstance&& x);
 		
 		// var stat:
+		int limit(Limit l)const;
 		int physical_limit()const;
 		int mental_limit()const;
 		int social_limit()const;
@@ -65,6 +68,7 @@ class CharacterInstance
 		bool alive() const;
 		// interact
 		void act(vector<CharacterInstance>& cs);
+		void attack_weapon(CharacterInstance& c, Weapon w );
 		void attack_unarmed_combat(CharacterInstance& c);
 		void resist_armor_body(int d, int ap=0, bool stun=false);
 		void take_phys(int d);

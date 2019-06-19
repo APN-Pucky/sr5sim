@@ -20,11 +20,13 @@ TEST_CASE("Sim","[sim]") {
 	c2.stats[intuition] = 4;
 	c1.stats[unarmed_combat] = 6;
 	c2.stats[unarmed_combat] = 6;
+	c1.stats[strength] = 3;
+	c2.stats[strength] = 3;
 	int wins = 0;
 	int loss = 0;
 	int stall = 0;
 	debug_print = 0;
-	while(wins+loss+stall < 100)
+	while(wins+loss+stall < 10)
 	{
 		simulate(sd,{c1,c2});
 		if(sd.res==WIN)wins++;

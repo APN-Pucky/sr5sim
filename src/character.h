@@ -19,6 +19,7 @@ struct Character
   //unordered_map<string,string> armor;
   string name,alias;
   int uuid = 0;
+  bool smartlink = false;
   bool pain_editor= false;
 
   string description() const;
@@ -76,8 +77,8 @@ class CharacterInstance
 		void take_stun(int d);
 		// eval
 		void init();
-		int eval_net(initializer_list<Stat> s1, int limit1,CharacterInstance& c, initializer_list<Stat> s2,int limit2, bool apply_enemy_mali=true,bool apply_own_mali=true);
-		int eval(initializer_list<Stat> s1,int limit, bool apply_mali=true);
+		int eval_net(initializer_list<Stat> s1, int limit1,CharacterInstance& c, initializer_list<Stat> s2,int limit2, bool apply_enemy_mali=true,bool apply_own_mali=true, int own_bonus=0,int enemy_bonus=0);
+		int eval(initializer_list<Stat> s1,int limit, bool apply_mali=true, int bonus =0);
 		
 		// cmp by initiative
 		friend bool operator >( CharacterInstance& x, CharacterInstance& y);

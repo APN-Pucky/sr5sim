@@ -6,6 +6,9 @@ cd build
 cmake ..
 cmake --build . 
 ctest -C Debug
+
+#exit
+
 cd ../bin
 
 if [ -d "Debug" ]; then

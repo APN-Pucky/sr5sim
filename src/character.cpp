@@ -42,7 +42,7 @@ int CI::mali() const{
 }
 bool CI::ko() const{
 	if(reference.pain_editor)return !alive();
-	return max_stun()<stun_dmg || max_ko()<phys_dmg;
+	return max_stun()<=stun_dmg || max_ko()<=phys_dmg;
 }
 bool CI::alive() const
 {
@@ -54,12 +54,33 @@ void CI::act(vector<CI>& cis) {
 	has_acted = true;
 	if(ko())return;
 	if(uid()==1) {
-		current_weapon = reference.weapon("Spurs");
-		attack_weapon(cis[1]);
+		for(CI& c : cis)
+		{
+			if(c.uid()!=1 && !c.ko()) {
+				current_weapon = reference.weapon("Ares Alpha");
+				current_weapon.bullets = 6;
+				current_weapon.use +=1; //scope simple action
+				current_weapon.use -=2 ;//vitals
+				current_weapon.damage +=2;
+				current_weapon.ap += -4; //APDS
+				attack_weapon(c);
+				current_weapon.ap -= -4; //APDS
+				current_weapon.use -=1;
+				current_weapon.use +=2;
+				current_weapon.damage -=2;
+				return;
+			}
+		}
 	}
 	else {
-		current_weapon = reference.weapon("Unarmed Attack");
-		attack_weapon(cis[1]);
+		for(CI& c : cis)
+		{
+			if(c.uid()==1 && !c.ko()) {
+				current_weapon = reference.weapon("Altmayr SPX2");
+				attack_weapon(c);
+			}
+		}
+		
 	}
 	//attack_unarmed_combat(cis[1]);
 }
@@ -69,13 +90,15 @@ void CI::attack_weapon(CI& enemy) {
 	const Weapon w(current_weapon);
 	int net = 0;
 	if(w.useskill==close_combat || group[w.useskill] == close_combat) {
-		int dreach = enemy.current_weapon.reach+enemy.stat(reach)-w.reach-stat(reach);
-		enemy.mod_stats[reach] += dreach;
-		net = eval_net({w.useattr,w.useskill},physical_limit(),enemy,{reaction,intuition,reach},enemy.physical_limit(),false);
-		enemy.mod_stats[reach] -=dreach;
+		int dreach = enemy.stat(reach)+enemy.current_weapon.reach-w.reach-stat(reach);
+		//enemy.mod_stats[reach] += dreach;
+		net = eval_net({w.useattr,w.useskill},w.accuracy?w.accuracy:physical_limit(),enemy,{reaction,intuition},enemy.physical_limit(),true,true,0+w.use,dreach); //Mali for dodge
+		//enemy.mod_stats[reach] -=dreach;
 	}
 	else{
-		net = eval_net({w.useattr,w.useskill},w.accuracy?w.accuracy:physical_limit(),enemy,{reaction,intuition},enemy.physical_limit(),false);
+		int bm =  (1-w.bullets);
+		int bb = min(0,enemy.stat(intuition)+enemy.stat(reaction)-(w.bullets-1));
+		net = eval_net({w.useattr,w.useskill},w.accuracy?w.accuracy:physical_limit(),enemy,{reaction,intuition},enemy.physical_limit(),true, true,-bb+w.use,bm); //Mali for dodge
 	}
 	if(net >0){
 		enemy.resist_armor_body(w.damage+stat(w.damage_skill)+net,w.ap,w.damage_type==stun);
@@ -115,7 +138,15 @@ void CI::resist_armor_body(int d, int ap, bool stun){
 
 void CI::take_stun(int stun) {
 	_DEBUG_MSG(1," => -%i STUN\n",stun);
-	this->stun_dmg += stun;
+	if(stun_dmg + stun >max_stun()) {
+		stun -= max_stun()-this->stun_dmg;
+		this->stun_dmg = max_stun();
+		take_phys(stun);
+	}
+	else {
+		//normal
+		this->stun_dmg += stun;
+	}
 }
 void CI::take_phys(int dmg){
 	_DEBUG_MSG(1," => -%i HP\n",dmg);
@@ -128,21 +159,27 @@ void CI::init() {
 }
 
 
-int CI::eval_net( std::initializer_list<Stat> stats1,int limit1, CI& enemy, std::initializer_list<Stat> stats2,int limit2, bool apply_enemy_mali,bool apply_own_mali){
+int CI::eval_net( std::initializer_list<Stat> stats1,int limit1, CI& enemy, std::initializer_list<Stat> stats2,int limit2, bool apply_enemy_mali,bool apply_own_mali, int own_bonus,int enemy_bonus){
 	_DEBUG_MSG(1,"(");
-	auto first = eval(stats1,limit1,apply_own_mali);
+	auto first = eval(stats1,limit1,apply_own_mali,own_bonus);
 	_DEBUG_MSG(1,") vs (");
-	auto second = enemy.eval(stats2,limit2,apply_enemy_mali);
+	auto second = enemy.eval(stats2,limit2,apply_enemy_mali,enemy_bonus);
 	_DEBUG_MSG(1,")=%i ", first-second);
 	return first-second;
 }
 
-int CI::eval(std::initializer_list<Stat> statslist,int limit, bool apply_mali) {
+
+int CI::eval(std::initializer_list<Stat> statslist,int limit, bool apply_mali, int bonus) 
+{
 	int sum=0;
 	_DEBUG_MSG(1,"[");
 	for(auto s : statslist) {
 		sum+=stat(s);
 		_DEBUG_MSG(1,"%s(%i)+",stats_abbrev(s).c_str(),stat(s));
+	}
+	if(bonus) {
+		_DEBUG_MSG(1,"(%i)+",bonus);
+		sum +=bonus;
 	}
 	int mal = this->mali();
 	if(apply_mali && mal)

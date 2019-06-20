@@ -11,6 +11,7 @@ public:
 	string name;
 	Stat useattr = agility;
 	Stat useskill;
+	int use = 0; //pool bonus value
 	int reach= 0;
 	int damage = 0;
 	Stat damage_skill = zero;
@@ -19,6 +20,7 @@ public:
 	int rc=0;
 	int accuracy = 0;
 	Limit accuracy_limit = unlimited;
+	int bullets = 1;
 	Mode mode =SS;	
 	bool smartlink =false;
 	bool launcher = false;

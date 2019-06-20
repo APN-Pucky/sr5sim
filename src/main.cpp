@@ -1,19 +1,26 @@
 #include <iostream>
 #include "load.h"
 #include "debug.h"
+#include "rng.h"
 
 using namespace std;
 
 int main(int argc,char** argv)
 {
+	init();
 	debug_print++;
-	Character c1 ; 
-	load_character(c1,"../own/nick.chum5");
-	Character c2 ; 
-	load_character(c2,"../own/ogir.chum5");
+	std::vector<Character> cs;
+	Character c;
+	load_character(c,"../own/nick.chum5");
+	cs.emplace_back(c);
+	for(int i = 0; i  < 10;++i) {
+		Character c;
+		load_character(c,"../own/ganger.chum5");
+		cs.emplace_back(c);
+	}
 	debug_print--;
 	SimData sd;
-	c1.uuid = 1;
+	//c1.uuid = 1;
 	/*
 	// 7*3=21
 	Character c1,c2;
@@ -35,18 +42,19 @@ int main(int argc,char** argv)
 	c2.stats[intuition] = 4;
 	c2.stats[unarmed_combat] = -1;
 	*/
-	int wins = 0;
-	int loss = 0;
-	int stall = 0;
-	debug_print=0;
-	while(wins+loss+stall < 100000)
+	SimData whole;
+	whole.data = {0,0,0,0};
+	debug_print=2;
+	while(whole.wins+whole.losses+whole.stalls < 10000)
 	{
-		simulate(sd,{c1,c2});
-		if(sd.res==WIN)wins++;
-		if(sd.res==LOSS)loss++;
-		if(sd.res==STALL)stall++;
+		simulate(sd,cs,true);
+		whole +=sd;
+		debug_print = 0;
 	}
-	cout << endl << "RES: " << 1.*wins/(loss+wins+stall) << " " << wins << "/" << loss << "/" << stall << endl;
+	cout << endl << "RES: " << 1.*whole.wins/(whole.losses+whole.wins+whole.stalls) << " " << whole.wins << "/" << whole.losses << "/" << whole.stalls << endl;
+	cout << endl << "Data: " << 1.*whole.data[0]/(whole.losses+whole.wins+whole.stalls) << " " << 1.*whole.data[1]/(whole.losses+whole.wins+whole.stalls) << " "<< 1.*whole.data[2]/(whole.losses+whole.wins+whole.stalls) << " "<< 1.*whole.data[3]/(whole.losses+whole.wins+whole.stalls) << " " <<endl;
+	
+	
 	debug_print--;
 	debug_print--;
 	

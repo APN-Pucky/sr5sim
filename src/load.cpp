@@ -13,6 +13,8 @@
 using namespace rapidxml;
 using namespace std;
 
+int cuid = 1;
+
 void load_character(Character& chr,const std::string & filename, bool do_warn_on_missing=true)
 {
  
@@ -23,6 +25,8 @@ void load_character(Character& chr,const std::string & filename, bool do_warn_on
 
   chr.alias = string(top->first_node("alias")->value());
   chr.name = string(top->first_node("name")->value());
+  chr.uuid = cuid;
+  cuid++;
   
   _DEBUG_MSG(3,"Loading %s aka %s\n", chr.name.c_str(),chr.alias.c_str());
   
@@ -89,7 +93,7 @@ void load_character(Character& chr,const std::string & filename, bool do_warn_on
     string name = string(node->first_node("name")->value());
     int index = position(name,stats_name,num_stat); 
     if(index != num_stat)
-	chr.stats[index] = base+karma;
+		chr.stats[index] = base+karma;
 
     /*if(strcmp(node->first_node("name")->value(),"Acting")==0) chr.statgroups[acting] += karma+base;
     if(strcmp(node->first_node("name")->value(),"Outdoors")==0) chr.statgroups[outdoors] += karma+base;
@@ -108,11 +112,9 @@ void load_character(Character& chr,const std::string & filename, bool do_warn_on
   {
     if(strcmp(node->first_node("name")->value(),"Pain Editor")==0)
     {
-    	if(false) {
 		chr.pain_editor = true;
 		chr.stats[intuition]-=1;
 		chr.stats[willpower]+=1;
-	}
     }
     auto c = node->first_node("children");
     auto cy = c->first_node("cyberware");
@@ -125,6 +127,10 @@ void load_character(Character& chr,const std::string & filename, bool do_warn_on
 	}
 	if(nn.find("Agility")!= string::npos) {
 		agi+= atoi(cy->first_node("rating")->value());
+	}
+	if(strcmp(cy->first_node("name")->value(),"Smartlink")==0)
+    {
+		chr.smartlink = true;
 	}
     }
     if(agi> chr.stats[agility])chr.stats[agility] =agi;
@@ -224,10 +230,26 @@ void load_character(Character& chr,const std::string & filename, bool do_warn_on
 				
 			}
 		}
+	if(node->first_node("accessories") ){
+		auto aa = node->first_node("accessories")->first_node("accessory");
+		for(;aa;aa=aa->next_sibling())
+		{
+			if(aa->first_node("rc"))w.rc += atoi(aa->first_node("rc")->value());
+			if(aa->first_node("ap"))w.ap += atoi(aa->first_node("ap")->value());
+			if(aa->first_node("accuracy")) {
+				w.accuracy += atoi(aa->first_node("accuracy")->value()); //smartlink?
+				
+				if(strcmp(aa->first_node("name")->value(),"Smartgun System, Internal")==0 || strcmp(aa->first_node("name")->value(),"Smartgun System, external")==0)
+				{
+					if(chr.smartlink) w.use += atoi(aa->first_node("accuracy")->value());
+				}
+			}
+			//w.reach += atoi(node->first_node("reach")->value());
+		}
+	}
 	chr.weapons.emplace_back(w); 
 	_DEBUG_MSG(5, "dmg=%i,type=%i,skill=%s\n", w.damage,w.damage_type, stats_name[w.damage_skill].c_str());
   }
-
   node = top->first_node("improvements")->first_node("improvement");
   for(;node;node = node->next_sibling())
   {

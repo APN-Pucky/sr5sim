@@ -19,7 +19,7 @@ enum Stat {
 	//attributes
   	body,agility,reaction,strength,willpower,logic,intuition,charisma,edge,essence,magic,resonance,depth,
 	//var
-	armor,physicalcm,initiative_dice,reach,damage_resistance,
+	armor,physicalcm,initiative_dice,reach,damage_resistance,bullets,
 	//groups
 	acting,outdoors,close_combat,engineering,stealth,firearms,electronics,influence,cracking, biotech,athletics, 
 	//skills
@@ -41,7 +41,7 @@ const string stats_name[num_stat] = {
 	//attr
 	"Body","Agility", "Reaction", "Strength", "Willpower", "Logic", "Intuition", "Charisma", "Edge" ,"Essence", "Mage", "Ressonace", "Depth",
 	//var
-	"Armor", "PhysicalCM","InitiativeDice","Reach","DamageResistance",
+	"Armor", "PhysicalCM","InitiativeDice","Reach","DamageResistance", "Bullets",
 	//groups
 	"Acting", "Outdoors", "Close Combat", "Engineering" , "Stealth", "Firearms", "Electronics" ,"Influence" , "Cracking" ,"Biotech" , "Athletics",
 	//skills
@@ -61,7 +61,7 @@ const int skill[num_stat] = {
 	//attributes
   	zero,zero,zero,zero,zero,zero,zero,zero,zero,zero,zero,zero,zero,
 	//var 
-	zero,zero,zero,zero,zero,
+	zero,zero,zero,zero,zero,zero,
 	//groups
 	zero,zero,zero,zero,zero,zero,zero,zero,zero,zero,zero,
 	//skills
@@ -79,7 +79,7 @@ const int group[num_stat] = {
 	zero,
 	zero,zero,zero,zero,zero,zero,zero,zero,zero,zero,zero,zero,zero,
 	//var
-	zero,zero,zero,zero,zero,
+	zero,zero,zero,zero,zero,zero,
 	//group
 	zero,zero,zero,zero,zero,zero,zero,zero,zero,zero,zero,
 	//skills

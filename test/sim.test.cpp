@@ -6,6 +6,7 @@ using namespace std;
 
 TEST_CASE("Sim","[sim]") {
 	Character c1,c2;
+	c1.uuid = 1;
 	SimData sd;
 	c1.stats[agility] = 5;
 	c2.stats[agility] = 5;
@@ -19,18 +20,18 @@ TEST_CASE("Sim","[sim]") {
 	c2.stats[intuition] = 4;
 	c1.stats[unarmed_combat] = 6;
 	c2.stats[unarmed_combat] = 6;
-	int wins = 0;
-	int loss = 0;
-	int stall = 0;
+	c1.stats[strength] = 3;
+	c2.stats[strength] = 3;
+	
+	SimData whole;
 	debug_print = 0;
-	while(wins+loss+stall < 100)
+	while(whole.wins+whole.losses+whole.stalls < 10)
 	{
 		simulate(sd,{c1,c2});
-		if(sd.res==WIN)wins++;
-		if(sd.res==LOSS)loss++;
-		if(sd.res==STALL)stall++;
+		whole += sd;
 	}
 	debug_print = 2;
-	cout << endl << "RES: " << 1.*wins/(loss+wins+stall) << " " << wins << "/" << loss << "/" << stall << endl;
+	cout << endl << "RES: " << 1.*whole.wins/(whole.losses+whole.wins+whole.stalls) << " " << whole.wins << "/" << whole.losses << "/" << whole.stalls << endl;
+	
 }
 	

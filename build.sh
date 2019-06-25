@@ -6,6 +6,9 @@ cd build
 cmake ..
 cmake --build . 
 ctest -C Debug
+
+#exit
+
 cd ../bin
 
 if [ -d "Debug" ]; then
@@ -16,7 +19,7 @@ else
 		./Release/sr5test.exe #windows
 		./Release/sr5sim.exe #windows
 	else
-		./sr5sim #linux
+		./sr5test #linux
 		./sr5sim #linux
 	fi
 fi

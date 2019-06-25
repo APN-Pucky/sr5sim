@@ -11,7 +11,11 @@ class Field
 public:
 	SimData& simdata;
 	vector<CI> cis;
-	Field(std::initializer_list<Character> chars,SimData& sd) : simdata(sd) {for(auto c : chars)cis.emplace_back(CI(c));}
+	Field(std::vector<Character> chars,SimData& sd) : simdata(sd) {
+		for(auto c : chars){
+			cis.emplace_back(CI(c));
+		}
+	}
 };
 
 
@@ -33,12 +37,13 @@ void next_round(Field& f)
 	}
 }
 
-void simulate(SimData& sd,std::initializer_list<Character> chars) 
+void simulate(SimData& sd,std::vector<Character> chars,bool data) 
 {
 	Field f(chars,sd);
-	f.cis[0].uid = 1;
+	//f.cis[0].reference.uid = 1;
 	int rounds = 0;
-	while(!f.cis[0].ko() && !f.cis[1].ko() && rounds < 100)
+	bool done = false;
+	while(!done && rounds < 100)
 	{
 		rounds++;
 		new_init_round(f);
@@ -65,9 +70,30 @@ void simulate(SimData& sd,std::initializer_list<Character> chars)
 			// and re-sort
 			sort(f.cis.begin(),f.cis.end());		
 		}
+		bool tdone = true;
+		for (auto c : f.cis) {
+			if(c.uid()==1 && c.ko())done = true;
+			if(c.uid()!=1 && !c.ko())tdone = false;
+		}
+		if(tdone)done = true;
 	}
 	
-	f.simdata.res=STALL;
-	for(auto a : f.cis)
-		if(a.uid==1)f.simdata.res = a.ko()?LOSS:WIN;
+	f.simdata.reset();
+	for(auto a : f.cis) {
+		if(a.uid()==1){
+			if(a.ko()){
+				f.simdata.losses =1;
+			}
+			else{
+				f.simdata.wins = 1;
+			}
+			if(data) {
+				f.simdata.data.emplace_back(a.stun_dmg);
+				f.simdata.data.emplace_back(a.max_stun());
+				f.simdata.data.emplace_back(a.phys_dmg);
+				f.simdata.data.emplace_back(a.max_phys());
+			}
+		}
+	}
+	if(!f.simdata.losses && !f.simdata.wins)f.simdata.stalls = 1;
 }

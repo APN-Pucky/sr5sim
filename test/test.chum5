@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <character>
   <createdversion>5.205.0</createdversion>
-  <appversion>5.205.0</appversion>
+  <appversion>5.207.0</appversion>
   <gameedition>SR5</gameedition>
   <settings>default.xml</settings>
   <metatype>Human</metatype>
@@ -171,7 +171,7 @@
       <metatypeaugmax>7</metatypeaugmax>
       <base>1</base>
       <karma>0</karma>
-      <metatypecategory>Standard</metatypecategory>
+      <metatypecategory>Special</metatypecategory>
       <totalvalue>3</totalvalue>
     </attribute>
     <attribute>
@@ -181,7 +181,7 @@
       <metatypeaugmax>6</metatypeaugmax>
       <base>0</base>
       <karma>0</karma>
-      <metatypecategory>Standard</metatypecategory>
+      <metatypecategory>Special</metatypecategory>
       <totalvalue>0</totalvalue>
     </attribute>
     <attribute>
@@ -191,7 +191,7 @@
       <metatypeaugmax>10</metatypeaugmax>
       <base>0</base>
       <karma>0</karma>
-      <metatypecategory>Standard</metatypecategory>
+      <metatypecategory>Special</metatypecategory>
       <totalvalue>1</totalvalue>
     </attribute>
     <attribute>
@@ -201,7 +201,7 @@
       <metatypeaugmax>6</metatypeaugmax>
       <base>0</base>
       <karma>0</karma>
-      <metatypecategory>Standard</metatypecategory>
+      <metatypecategory>Special</metatypecategory>
       <totalvalue>0</totalvalue>
     </attribute>
     <attribute>
@@ -221,7 +221,7 @@
       <metatypeaugmax>0</metatypeaugmax>
       <base>0</base>
       <karma>0</karma>
-      <metatypecategory>Standard</metatypecategory>
+      <metatypecategory>Special</metatypecategory>
       <totalvalue>0</totalvalue>
     </attribute>
   </attributes>
@@ -248,6 +248,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Gymnastics</name>
       </skill>
       <skill>
         <guid>e948bbd4-5f2a-4be4-82eb-c2df276e9d3c</guid>
@@ -257,6 +258,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Arcana</name>
       </skill>
       <skill>
         <guid>186c1018-58a0-43bf-bc10-9e3b9ddd597f</guid>
@@ -266,6 +268,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Biotechnology</name>
       </skill>
       <skill>
         <guid>147ecc13-1b68-4631-a5cb-cdbb2ac14ab1</guid>
@@ -275,6 +278,7 @@
         <karma>0</karma>
         <base>1</base>
         <notes />
+        <name>Pilot Ground Craft</name>
         <specs>
           <spec>
             <guid>4662333d-4083-4c1e-a07e-aa83d615d7bd</guid>
@@ -291,6 +295,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Chemistry</name>
       </skill>
       <skill>
         <guid>9c546986-006f-496c-8206-64609038d414</guid>
@@ -300,6 +305,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Computer</name>
       </skill>
       <skill>
         <guid>a1e1b706-6ea9-47cd-9b4c-d13e63452a8b</guid>
@@ -309,6 +315,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Intimidation</name>
       </skill>
       <skill>
         <guid>ad5d19da-33d2-4ed7-a161-1b10e2b75b75</guid>
@@ -318,6 +325,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Electronic Warfare</name>
       </skill>
       <skill>
         <guid>08d3e673-45e5-4685-b0ca-ec86b65239ac</guid>
@@ -327,6 +335,7 @@
         <karma>0</karma>
         <base>1</base>
         <notes />
+        <name>Escape Artist</name>
       </skill>
       <skill>
         <guid>7f74321e-a349-4766-8978-8dcde7272c57</guid>
@@ -336,6 +345,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>First Aid</name>
       </skill>
       <skill>
         <guid>aaef527b-32d9-40ff-a8db-7484628396d6</guid>
@@ -345,6 +355,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Automotive Mechanic</name>
       </skill>
       <skill>
         <guid>0163382a-07cb-4e36-833e-b513cdd75c1c</guid>
@@ -354,6 +365,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Palming</name>
       </skill>
       <skill>
         <guid>0646167b-c766-466e-826d-18d1ff7ffa09</guid>
@@ -363,6 +375,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Flight</name>
       </skill>
       <skill>
         <guid>0ea7e4c3-8bcd-444d-8005-0608d98e0556</guid>
@@ -372,6 +385,7 @@
         <karma>1</karma>
         <base>0</base>
         <notes />
+        <name>Pilot Aircraft</name>
       </skill>
       <skill>
         <guid>6e174e00-2d52-45d5-bf3f-4ab5811512d5</guid>
@@ -381,6 +395,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Free-Fall</name>
       </skill>
       <skill>
         <guid>94429895-6c23-488d-a30b-b8386b2774d7</guid>
@@ -390,6 +405,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Forgery</name>
       </skill>
       <skill>
         <guid>3a489d5b-4823-499c-b153-e62c8cb41468</guid>
@@ -399,6 +415,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Leadership</name>
       </skill>
       <skill>
         <guid>4e158e49-df57-4d46-a3b6-40035b7d0391</guid>
@@ -408,6 +425,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Etiquette</name>
       </skill>
       <skill>
         <guid>73895137-2bc2-42f1-8cc4-79fe84b5c1e9</guid>
@@ -417,6 +435,7 @@
         <karma>0</karma>
         <base>1</base>
         <notes />
+        <name>Gunnery</name>
       </skill>
       <skill>
         <guid>cd26834e-8cb8-4c45-9c2f-1cb60bd5837b</guid>
@@ -426,6 +445,7 @@
         <karma>0</karma>
         <base>6</base>
         <notes />
+        <name>Longarms</name>
         <specs>
           <spec>
             <guid>1ba6db9a-5caa-4da2-881a-8dec4b0e5fc7</guid>
@@ -442,6 +462,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Hacking</name>
       </skill>
       <skill>
         <guid>5d0bbcb2-478e-4c46-9f49-74f26b89266d</guid>
@@ -451,6 +472,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Artisan</name>
       </skill>
       <skill>
         <guid>c5913ba7-7799-4360-8755-f63b92b55013</guid>
@@ -460,6 +482,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Hardware</name>
       </skill>
       <skill>
         <guid>e95c451e-de0e-45bc-a4e6-f06dc765339e</guid>
@@ -469,6 +492,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Industrial Mechanic</name>
       </skill>
       <skill>
         <guid>d02f9b33-bb46-4ad5-b1a3-ba16ed1c8ee0</guid>
@@ -478,6 +502,7 @@
         <karma>0</karma>
         <base>1</base>
         <notes />
+        <name>Blades</name>
       </skill>
       <skill>
         <guid>9ea4cef4-9cd8-4993-bd6e-5fc91314fda2</guid>
@@ -487,6 +512,7 @@
         <karma>0</karma>
         <base>1</base>
         <notes />
+        <name>Clubs</name>
       </skill>
       <skill>
         <guid>0aecce95-5ad2-45ab-a9c5-f63b050a75e9</guid>
@@ -496,6 +522,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Cybertechnology</name>
       </skill>
       <skill>
         <guid>f568bf32-1a8a-4676-8f3a-8d55f19e54d5</guid>
@@ -505,6 +532,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Running</name>
       </skill>
       <skill>
         <guid>f09c3ec2-c3c0-4fdf-9191-6e86bb3206b1</guid>
@@ -514,6 +542,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Aeronautics Mechanic</name>
       </skill>
       <skill>
         <guid>df3eed45-8ba9-4194-bdc1-0ac2858702cb</guid>
@@ -523,6 +552,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Pilot Walker</name>
       </skill>
       <skill>
         <guid>203bebfd-2e3b-4b27-b357-943fa05bea65</guid>
@@ -532,6 +562,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Cybercombat</name>
       </skill>
       <skill>
         <guid>c39c1c26-6824-49ab-8858-ddf452b24037</guid>
@@ -541,6 +572,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Medicine</name>
       </skill>
       <skill>
         <guid>268b00fa-7ffc-4973-8c78-bf3c5d2e0bbd</guid>
@@ -550,6 +582,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Navigation</name>
       </skill>
       <skill>
         <guid>f74bbffe-4b02-43c4-bba3-473fd1cdf3ed</guid>
@@ -559,6 +592,7 @@
         <karma>0</karma>
         <base>6</base>
         <notes />
+        <name>Pistols</name>
         <specs>
           <spec>
             <guid>a0c29c23-1546-42a2-a0a7-2633c78452a0</guid>
@@ -575,6 +609,7 @@
         <karma>0</karma>
         <base>1</base>
         <notes />
+        <name>Archery</name>
       </skill>
       <skill>
         <guid>8ae852a6-8489-4e4d-bb39-16620b8a00aa</guid>
@@ -584,6 +619,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Pilot Aerospace</name>
       </skill>
       <skill>
         <guid>2e8a8dc5-44f0-4e10-a063-a4d71629560c</guid>
@@ -593,6 +629,7 @@
         <karma>1</karma>
         <base>0</base>
         <notes />
+        <name>Pilot Watercraft</name>
       </skill>
       <skill>
         <guid>2bb29d4e-1623-4702-a4e7-ca5c34d58b97</guid>
@@ -602,6 +639,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Sneaking</name>
       </skill>
       <skill>
         <guid>15b19069-4d5d-4ca5-94cf-855b17e86a66</guid>
@@ -611,6 +649,7 @@
         <karma>0</karma>
         <base>1</base>
         <notes />
+        <name>Locksmith</name>
       </skill>
       <skill>
         <guid>1b76211e-2ba9-4b96-a3e6-164ff77be58d</guid>
@@ -620,6 +659,7 @@
         <karma>0</karma>
         <base>6</base>
         <notes />
+        <name>Automatics</name>
         <specs>
           <spec>
             <guid>b596f916-58b4-4dd1-aba7-a0494bd83632</guid>
@@ -636,6 +676,7 @@
         <karma>0</karma>
         <base>1</base>
         <notes />
+        <name>Heavy Weapons</name>
       </skill>
       <skill>
         <guid>4818945e-626b-40bc-b5d2-81dc06eece54</guid>
@@ -645,6 +686,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Swimming</name>
       </skill>
       <skill>
         <guid>359e499f-a4e5-422f-a3df-caa1e88560fe</guid>
@@ -654,6 +696,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Nautical Mechanic</name>
       </skill>
       <skill>
         <guid>cb614cd9-d329-42ed-8cd7-87cef3e2d50d</guid>
@@ -663,6 +706,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Software</name>
       </skill>
       <skill>
         <guid>6b9490aa-0222-4398-aa51-a622eb958fe5</guid>
@@ -672,6 +716,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Demolitions</name>
       </skill>
       <skill>
         <guid>115ca8ec-cc59-4c06-a22b-5159632748b1</guid>
@@ -681,6 +726,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Tracking</name>
       </skill>
       <skill>
         <guid>c4003da8-98ac-4a60-98c4-9d15aad4a842</guid>
@@ -690,6 +736,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Survival</name>
       </skill>
       <skill>
         <guid>f6999b0c-fe80-4ce6-ac92-d0963b4f0584</guid>
@@ -699,6 +746,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Diving</name>
       </skill>
       <skill>
         <guid>fe73bd60-0c5f-43b5-866e-01e082426466</guid>
@@ -708,6 +756,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Animal Handling</name>
       </skill>
       <skill>
         <guid>8d0225a5-72cb-465b-9260-feb569a9cbb4</guid>
@@ -717,6 +766,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Instruction</name>
       </skill>
       <skill>
         <guid>9ce734c9-d38a-4519-a211-4bc940d92d64</guid>
@@ -726,6 +776,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Negotiation</name>
       </skill>
       <skill>
         <guid>7d11f504-ab3f-4d17-a813-cb08a9a09208</guid>
@@ -735,6 +786,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Disguise</name>
       </skill>
       <skill>
         <guid>ebc6f45a-6ec4-442f-953c-e11f87b5ff9f</guid>
@@ -744,6 +796,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Impersonation</name>
       </skill>
       <skill>
         <guid>44b800e9-49a2-481c-9756-b829c859d06a</guid>
@@ -753,6 +806,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Performance</name>
       </skill>
       <skill>
         <guid>9610b46b-0813-4fe4-aec7-dbae1ce8b03d</guid>
@@ -762,6 +816,7 @@
         <karma>0</karma>
         <base>1</base>
         <notes />
+        <name>Armorer</name>
         <specs>
           <spec>
             <guid>b28c4669-db24-4153-a05f-6dac1b17c69d</guid>
@@ -778,6 +833,7 @@
         <karma>0</karma>
         <base>6</base>
         <notes />
+        <name>Unarmed Combat</name>
       </skill>
       <skill>
         <guid>c8e453f5-0040-4634-9014-31d95c94e1bb</guid>
@@ -787,6 +843,7 @@
         <karma>0</karma>
         <base>6</base>
         <notes />
+        <name>Perception</name>
         <specs>
           <spec>
             <guid>735bcfb7-4e41-4b4a-b181-a619457d6ef2</guid>
@@ -803,6 +860,7 @@
         <karma>0</karma>
         <base>1</base>
         <notes />
+        <name>Throwing Weapons</name>
       </skill>
       <skill>
         <guid>0d860397-05d1-4d75-8025-efd97b3ffd16</guid>
@@ -812,6 +870,7 @@
         <karma>0</karma>
         <base>0</base>
         <notes />
+        <name>Con</name>
       </skill>
     </skills>
     <knoskills>
@@ -981,6 +1040,7 @@
   <martialarts>
     <martialart>
       <name>Sangre Y Acero</name>
+      <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
       <guid>77ce6c7e-7884-40d2-a82e-2a62a6bb2e24</guid>
       <source>RG</source>
       <page>133</page>
@@ -989,8 +1049,8 @@
       <isquality>False</isquality>
       <martialarttechniques>
         <martialarttechnique>
-          <guid>87e90cde-2c82-4510-8246-5463a17541c6</guid>
           <sourceid>3aba0ece-6ced-48ab-a873-3787c58df995</sourceid>
+          <guid>87e90cde-2c82-4510-8246-5463a17541c6</guid>
           <name>Finishing Move</name>
           <notes />
           <source>RG</source>
@@ -1090,6 +1150,7 @@
       <stolen>False</stolen>
       <armormods>
         <armormod>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>29b9b545-fcdb-4b6d-964f-a456b511a5c2</guid>
           <name>Drag Handle</name>
           <category>General</category>
@@ -1114,6 +1175,7 @@
           <sortorder>0</sortorder>
         </armormod>
         <armormod>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>6812dc5e-48bb-483d-80bd-08fa4f82d8d4</guid>
           <name>Micro-Hardpoint</name>
           <category>General</category>
@@ -1140,8 +1202,8 @@
       </armormods>
       <gears>
         <gear>
+          <sourceid>5977fb0b-b74e-4eb9-b433-9b7c9877b14f</sourceid>
           <guid>8630f9c8-3e58-4607-8911-d8fd19b3de98</guid>
-          <id>5977fb0b-b74e-4eb9-b433-9b7c9877b14f</id>
           <name>Holster</name>
           <category>Armor Enhancements</category>
           <capacity>[0]</capacity>
@@ -1193,8 +1255,8 @@
           <sortorder>0</sortorder>
         </gear>
         <gear>
+          <sourceid>ae9c37df-6d82-44c1-aa21-6c87e45e2dc1</sourceid>
           <guid>2b37c4ee-6718-4acb-98b1-ea1001a292e2</guid>
-          <id>ae9c37df-6d82-44c1-aa21-6c87e45e2dc1</id>
           <name>Medkit</name>
           <category>Biotech</category>
           <capacity>[0]</capacity>
@@ -1281,8 +1343,8 @@
       <armormods />
       <gears>
         <gear>
+          <sourceid>e97c478c-f10a-494e-98ba-0d9c3076cd73</sourceid>
           <guid>f62ffe36-52a7-41d5-bcf3-b36a3e3bdc89</guid>
-          <id>e97c478c-f10a-494e-98ba-0d9c3076cd73</id>
           <name>Biomonitor</name>
           <category>Biotech</category>
           <capacity>[0]</capacity>
@@ -1453,6 +1515,7 @@
       <extramount />
       <accessories>
         <accessory>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>1279c1e7-81b0-450b-b93f-08286c86cb1d</guid>
           <name>Smartgun System, Internal</name>
           <mount>Internal</mount>
@@ -1462,6 +1525,7 @@
           <rating>0</rating>
           <rcgroup>0</rcgroup>
           <rcdeployable>False</rcdeployable>
+          <specialmodification>False</specialmodification>
           <conceal />
           <avail>+2R</avail>
           <cost>Weapon Cost</cost>
@@ -1472,8 +1536,8 @@
           <accuracy>2</accuracy>
           <gears>
             <gear>
+              <sourceid>3a79e046-8106-4089-a1ab-895eee956b86</sourceid>
               <guid>8a0cf17f-017f-403d-9419-a3b50932dd87</guid>
-              <id>3a79e046-8106-4089-a1ab-895eee956b86</id>
               <name>Laser Range Finder</name>
               <category>Sensor Functions</category>
               <capacity>[1]</capacity>
@@ -1525,8 +1589,8 @@
               <sortorder>0</sortorder>
             </gear>
             <gear>
+              <sourceid>fa6fa434-107b-4f36-a138-f98b044dae76</sourceid>
               <guid>87af442b-2593-4ae9-9138-afa9bcd95c91</guid>
-              <id>fa6fa434-107b-4f36-a138-f98b044dae76</id>
               <name>Camera, Micro</name>
               <category>Vision Devices</category>
               <capacity>1</capacity>
@@ -1601,6 +1665,7 @@
           <sortorder>0</sortorder>
         </accessory>
         <accessory>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>7f66ab6b-8094-4980-8d7f-0ae46da3a5b7</guid>
           <name>Stock</name>
           <mount>Stock</mount>
@@ -1610,6 +1675,7 @@
           <rating>0</rating>
           <rcgroup>2</rcgroup>
           <rcdeployable>False</rcdeployable>
+          <specialmodification>False</specialmodification>
           <conceal />
           <avail>2</avail>
           <cost>30</cost>
@@ -1641,6 +1707,7 @@
           <sortorder>0</sortorder>
         </accessory>
         <accessory>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>fc2297c4-9a12-4717-bb59-1d02c2912323</guid>
           <name>Shock Pad</name>
           <mount>None</mount>
@@ -1650,6 +1717,7 @@
           <rating>0</rating>
           <rcgroup>2</rcgroup>
           <rcdeployable>True</rcdeployable>
+          <specialmodification>False</specialmodification>
           <conceal />
           <avail>2</avail>
           <cost>50</cost>
@@ -1681,6 +1749,7 @@
           <sortorder>0</sortorder>
         </accessory>
         <accessory>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>f8ae574e-0107-458b-a8bd-4905fffb40cc</guid>
           <name>Foregrip</name>
           <mount>Under</mount>
@@ -1690,6 +1759,7 @@
           <rating>0</rating>
           <rcgroup>1</rcgroup>
           <rcdeployable>False</rcdeployable>
+          <specialmodification>False</specialmodification>
           <conceal>1</conceal>
           <avail>2</avail>
           <cost>100</cost>
@@ -1789,6 +1859,7 @@
       <extramount />
       <accessories>
         <accessory>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>334b7b0e-185b-45dd-9f4b-372408658dc8</guid>
           <name>Smartgun System, Internal</name>
           <mount>Internal</mount>
@@ -1798,6 +1869,7 @@
           <rating>0</rating>
           <rcgroup>0</rcgroup>
           <rcdeployable>False</rcdeployable>
+          <specialmodification>False</specialmodification>
           <conceal />
           <avail>+2R</avail>
           <cost>Weapon Cost</cost>
@@ -1808,8 +1880,8 @@
           <accuracy>2</accuracy>
           <gears>
             <gear>
+              <sourceid>3a79e046-8106-4089-a1ab-895eee956b86</sourceid>
               <guid>33172955-9e38-4071-ae04-3bf61d66f842</guid>
-              <id>3a79e046-8106-4089-a1ab-895eee956b86</id>
               <name>Laser Range Finder</name>
               <category>Sensor Functions</category>
               <capacity>[1]</capacity>
@@ -1861,8 +1933,8 @@
               <sortorder>0</sortorder>
             </gear>
             <gear>
+              <sourceid>fa6fa434-107b-4f36-a138-f98b044dae76</sourceid>
               <guid>831625f0-3806-4ee5-b151-510dc56787a6</guid>
-              <id>fa6fa434-107b-4f36-a138-f98b044dae76</id>
               <name>Camera, Micro</name>
               <category>Vision Devices</category>
               <capacity>1</capacity>
@@ -1937,6 +2009,7 @@
           <sortorder>0</sortorder>
         </accessory>
         <accessory>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>afc92328-42ad-4f92-8982-1d67fef64208</guid>
           <name>Flashlight, Standard</name>
           <mount>Internal</mount>
@@ -1946,6 +2019,7 @@
           <rating>0</rating>
           <rcgroup>0</rcgroup>
           <rcdeployable>False</rcdeployable>
+          <specialmodification>False</specialmodification>
           <conceal />
           <avail>2</avail>
           <cost>50</cost>
@@ -2045,6 +2119,7 @@
       <extramount />
       <accessories>
         <accessory>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>e848d857-aa0a-445b-b3fc-4c22a2003ee3</guid>
           <name>Smartgun System, Internal</name>
           <mount>Internal</mount>
@@ -2054,6 +2129,7 @@
           <rating>0</rating>
           <rcgroup>0</rcgroup>
           <rcdeployable>False</rcdeployable>
+          <specialmodification>False</specialmodification>
           <conceal />
           <avail>+2R</avail>
           <cost>Weapon Cost</cost>
@@ -2064,8 +2140,8 @@
           <accuracy>2</accuracy>
           <gears>
             <gear>
+              <sourceid>3a79e046-8106-4089-a1ab-895eee956b86</sourceid>
               <guid>70d91ee1-1e26-40da-9ecd-3dbac7feb857</guid>
-              <id>3a79e046-8106-4089-a1ab-895eee956b86</id>
               <name>Laser Range Finder</name>
               <category>Sensor Functions</category>
               <capacity>[1]</capacity>
@@ -2117,8 +2193,8 @@
               <sortorder>0</sortorder>
             </gear>
             <gear>
+              <sourceid>fa6fa434-107b-4f36-a138-f98b044dae76</sourceid>
               <guid>08f80d94-6b52-417e-92f9-2a377da7fc10</guid>
-              <id>fa6fa434-107b-4f36-a138-f98b044dae76</id>
               <name>Camera, Micro</name>
               <category>Vision Devices</category>
               <capacity>1</capacity>
@@ -2193,6 +2269,7 @@
           <sortorder>0</sortorder>
         </accessory>
         <accessory>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>03ef8981-fbc8-4d9d-9c34-0031faafff4f</guid>
           <name>Flashlight, Standard</name>
           <mount>Internal</mount>
@@ -2202,6 +2279,7 @@
           <rating>0</rating>
           <rcgroup>0</rcgroup>
           <rcdeployable>False</rcdeployable>
+          <specialmodification>False</specialmodification>
           <conceal />
           <avail>2</avail>
           <cost>50</cost>
@@ -2433,6 +2511,7 @@
       <extramount />
       <accessories>
         <accessory>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>ff4d9599-9d8a-4711-a03f-6cadf85e5a23</guid>
           <name>Smartgun System, Internal</name>
           <mount>Internal</mount>
@@ -2442,6 +2521,7 @@
           <rating>0</rating>
           <rcgroup>0</rcgroup>
           <rcdeployable>False</rcdeployable>
+          <specialmodification>False</specialmodification>
           <conceal />
           <avail>+2R</avail>
           <cost>Weapon Cost</cost>
@@ -2452,8 +2532,8 @@
           <accuracy>2</accuracy>
           <gears>
             <gear>
+              <sourceid>3a79e046-8106-4089-a1ab-895eee956b86</sourceid>
               <guid>5b812629-1827-46c0-8053-fa4d23e5c9ca</guid>
-              <id>3a79e046-8106-4089-a1ab-895eee956b86</id>
               <name>Laser Range Finder</name>
               <category>Sensor Functions</category>
               <capacity>[1]</capacity>
@@ -2505,8 +2585,8 @@
               <sortorder>0</sortorder>
             </gear>
             <gear>
+              <sourceid>fa6fa434-107b-4f36-a138-f98b044dae76</sourceid>
               <guid>380763d4-1097-4719-94a0-5fec7945f43d</guid>
-              <id>fa6fa434-107b-4f36-a138-f98b044dae76</id>
               <name>Camera, Micro</name>
               <category>Vision Devices</category>
               <capacity>1</capacity>
@@ -2581,6 +2661,7 @@
           <sortorder>0</sortorder>
         </accessory>
         <accessory>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>7f3d555f-59be-4cfd-83b6-7687bc15d4d0</guid>
           <name>Gas-Vent 3 System</name>
           <mount>Barrel</mount>
@@ -2590,6 +2671,7 @@
           <rating>0</rating>
           <rcgroup>0</rcgroup>
           <rcdeployable>False</rcdeployable>
+          <specialmodification>False</specialmodification>
           <conceal />
           <avail>9R</avail>
           <cost>600</cost>
@@ -2621,6 +2703,7 @@
           <sortorder>0</sortorder>
         </accessory>
         <accessory>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>ebeb39b3-6b57-40e8-a067-4cc9554a408b</guid>
           <name>Shock Pad</name>
           <mount>None</mount>
@@ -2630,6 +2713,7 @@
           <rating>0</rating>
           <rcgroup>2</rcgroup>
           <rcdeployable>True</rcdeployable>
+          <specialmodification>False</specialmodification>
           <conceal />
           <avail>2</avail>
           <cost>50</cost>
@@ -2661,6 +2745,7 @@
           <sortorder>0</sortorder>
         </accessory>
         <accessory>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>646419b6-0216-459c-a8db-9fa75a488782</guid>
           <name>Flashlight, Standard</name>
           <mount>Top</mount>
@@ -2670,6 +2755,7 @@
           <rating>0</rating>
           <rcgroup>0</rcgroup>
           <rcdeployable>False</rcdeployable>
+          <specialmodification>False</specialmodification>
           <conceal />
           <avail>2</avail>
           <cost>50</cost>
@@ -4437,8 +4523,8 @@
           <children />
           <gears>
             <gear>
+              <sourceid>b141098a-1bb3-4003-91fa-fff6958ab68f</sourceid>
               <guid>cb4643ad-5f03-4021-a7be-acdf624e47f8</guid>
-              <id>b141098a-1bb3-4003-91fa-fff6958ab68f</id>
               <name>Pulse Wave</name>
               <category>Commlinks</category>
               <capacity>0</capacity>
@@ -4470,8 +4556,8 @@
               <allowrename>False</allowrename>
               <children>
                 <gear>
+                  <sourceid>b1f2dcee-7304-4e5e-b022-f3393009a78c</sourceid>
                   <guid>5e7e8a91-8b8a-44c3-9cea-dcfdbb9942e5</guid>
-                  <id>b1f2dcee-7304-4e5e-b022-f3393009a78c</id>
                   <name>Commlink Functionality</name>
                   <category>Electronics Accessories</category>
                   <capacity />
@@ -4503,8 +4589,8 @@
                   <allowrename>False</allowrename>
                   <children>
                     <gear>
+                      <sourceid>9cd0bf83-3cfa-4c61-bfb0-ae6c01ac8f8d</sourceid>
                       <guid>e256c657-b26a-43b8-b4ae-2da19472edbf</guid>
-                      <id>9cd0bf83-3cfa-4c61-bfb0-ae6c01ac8f8d</id>
                       <name>Music Player</name>
                       <category>Electronics Accessories</category>
                       <capacity />
@@ -4556,8 +4642,8 @@
                       <sortorder>0</sortorder>
                     </gear>
                     <gear>
+                      <sourceid>5db9c4b8-4d7a-4728-aff0-617102c57fc5</sourceid>
                       <guid>ade1b1b9-acee-4294-ab7d-a15395fbdf08</guid>
-                      <id>5db9c4b8-4d7a-4728-aff0-617102c57fc5</id>
                       <name>Micro Trid-Projector</name>
                       <category>Electronics Accessories</category>
                       <capacity />
@@ -4609,8 +4695,8 @@
                       <sortorder>0</sortorder>
                     </gear>
                     <gear>
+                      <sourceid>b19f022c-c854-4a3f-8b7a-d2a2532a2680</sourceid>
                       <guid>afadd746-71e3-4acf-8bbb-8248c9d737cf</guid>
-                      <id>b19f022c-c854-4a3f-8b7a-d2a2532a2680</id>
                       <name>Touchscreen Display</name>
                       <category>Electronics Accessories</category>
                       <capacity />
@@ -4662,8 +4748,8 @@
                       <sortorder>0</sortorder>
                     </gear>
                     <gear>
+                      <sourceid>fa6fa434-107b-4f36-a138-f98b044dae76</sourceid>
                       <guid>5517f6bc-6738-479f-b063-753b2f717cab</guid>
-                      <id>fa6fa434-107b-4f36-a138-f98b044dae76</id>
                       <name>Camera, Micro</name>
                       <category>Vision Devices</category>
                       <capacity>[0]</capacity>
@@ -4715,8 +4801,8 @@
                       <sortorder>0</sortorder>
                     </gear>
                     <gear>
+                      <sourceid>5146abd2-6ab2-4aee-b523-a63d5c5ab93b</sourceid>
                       <guid>f518b673-8354-43c9-b507-d7f398ddece7</guid>
-                      <id>5146abd2-6ab2-4aee-b523-a63d5c5ab93b</id>
                       <name>RFID Tag Scanner</name>
                       <category>Electronics Accessories</category>
                       <capacity />
@@ -4768,8 +4854,8 @@
                       <sortorder>0</sortorder>
                     </gear>
                     <gear>
+                      <sourceid>82946de2-876c-46d8-a6ec-744a38257668</sourceid>
                       <guid>9febdf95-da65-4d4d-846b-7017ae6ec1e0</guid>
-                      <id>82946de2-876c-46d8-a6ec-744a38257668</id>
                       <name>GPS Guidance System</name>
                       <category>Electronics Accessories</category>
                       <capacity />
@@ -4821,8 +4907,8 @@
                       <sortorder>0</sortorder>
                     </gear>
                     <gear>
+                      <sourceid>f9995732-7d00-496c-8407-a3dc0e1a82ff</sourceid>
                       <guid>2e7dbbd9-b811-4863-8f11-db30dffa3479</guid>
-                      <id>f9995732-7d00-496c-8407-a3dc0e1a82ff</id>
                       <name>Chip Player</name>
                       <category>Electronics Accessories</category>
                       <capacity />
@@ -4874,8 +4960,8 @@
                       <sortorder>0</sortorder>
                     </gear>
                     <gear>
+                      <sourceid>1d6f985e-5cf0-463d-a445-fafdd387f301</sourceid>
                       <guid>ef294979-ad3d-4500-a0bd-a2c4db122b67</guid>
-                      <id>1d6f985e-5cf0-463d-a445-fafdd387f301</id>
                       <name>Credstick Reader</name>
                       <category>Electronics Accessories</category>
                       <capacity />
@@ -4927,8 +5013,8 @@
                       <sortorder>0</sortorder>
                     </gear>
                     <gear>
+                      <sourceid>5d69d002-c33d-4d0f-9c4d-d78db4d78e5d</sourceid>
                       <guid>47e4a5f0-2556-49c4-a2dc-8e9107795b7b</guid>
-                      <id>5d69d002-c33d-4d0f-9c4d-d78db4d78e5d</id>
                       <name>Earbuds</name>
                       <category>Audio Devices</category>
                       <capacity>[0]</capacity>
@@ -4980,8 +5066,8 @@
                       <sortorder>0</sortorder>
                     </gear>
                     <gear>
+                      <sourceid>786682fb-cbd5-4ee8-969a-233484004df7</sourceid>
                       <guid>c4ae8e73-ad4c-45bb-b569-4ae9486fcbc9</guid>
-                      <id>786682fb-cbd5-4ee8-969a-233484004df7</id>
                       <name>Shock- and Water-Resistant Case</name>
                       <category>Commlink Accessories</category>
                       <capacity />
@@ -5054,8 +5140,8 @@
                   <sortorder>0</sortorder>
                 </gear>
                 <gear>
+                  <sourceid>e97c478c-f10a-494e-98ba-0d9c3076cd73</sourceid>
                   <guid>03e6d8e3-9245-4fcb-9603-2aedf20fba36</guid>
-                  <id>e97c478c-f10a-494e-98ba-0d9c3076cd73</id>
                   <name>Biomonitor</name>
                   <category>Biotech</category>
                   <capacity />
@@ -6211,8 +6297,8 @@
       <children />
       <gears>
         <gear>
+          <sourceid>a2f8d85c-99eb-44ed-b747-ac995f8fec89</sourceid>
           <guid>a71df17b-476f-406f-b807-e3b4f4b87c7e</guid>
-          <id>a2f8d85c-99eb-44ed-b747-ac995f8fec89</id>
           <name>Universal Connector Cord (Meter)</name>
           <category>Tools</category>
           <capacity>[0]</capacity>
@@ -6511,6 +6597,7 @@
   </cyberwares>
   <qualities>
     <quality>
+      <sourceid>318d2edd-833b-48c5-a3e1-343bf03848a5</sourceid>
       <guid>5eba0a7d-dc0d-4116-ac0f-6b0e6a37e516</guid>
       <name>SINner (Corporate Limited)</name>
       <extra>Ares</extra>
@@ -6533,9 +6620,9 @@
       <firstlevelbonus>
       </firstlevelbonus>
       <notes />
-      <id>318d2edd-833b-48c5-a3e1-343bf03848a5</id>
     </quality>
     <quality>
+      <sourceid>9056baa6-ed79-4f28-a199-36093d99555f</sourceid>
       <guid>f2061d41-4083-4ffc-a770-5e808952b730</guid>
       <name>Flashbacks I</name>
       <extra>Verletzung von Kameraden im Kampf</extra>
@@ -6558,9 +6645,9 @@
       <firstlevelbonus>
       </firstlevelbonus>
       <notes />
-      <id>9056baa6-ed79-4f28-a199-36093d99555f</id>
     </quality>
     <quality>
+      <sourceid>ce939b04-5fc6-49e9-a747-9c9d1254449e</sourceid>
       <guid>2dc392cc-7a5c-4fa2-9bfc-5b078eae5366</guid>
       <name>Restricted Gear</name>
       <extra />
@@ -6583,9 +6670,9 @@
       <firstlevelbonus>
       </firstlevelbonus>
       <notes />
-      <id>ce939b04-5fc6-49e9-a747-9c9d1254449e</id>
     </quality>
     <quality>
+      <sourceid>68cfe94a-fa7e-4129-a9b9-b5d73e3ced99</sourceid>
       <guid>b3a01b19-e606-411e-a4f4-39dd6bacfc4b</guid>
       <name>Ambidextrous</name>
       <extra />
@@ -6608,9 +6695,9 @@
       <firstlevelbonus>
       </firstlevelbonus>
       <notes />
-      <id>68cfe94a-fa7e-4129-a9b9-b5d73e3ced99</id>
     </quality>
     <quality>
+      <sourceid>fd78fa11-5ab6-40db-bdb8-9fd722b08054</sourceid>
       <guid>25622646-66a6-4d2c-8986-cfc24af09915</guid>
       <name>Perfect Time</name>
       <extra />
@@ -6632,9 +6719,9 @@
       <firstlevelbonus>
       </firstlevelbonus>
       <notes />
-      <id>fd78fa11-5ab6-40db-bdb8-9fd722b08054</id>
     </quality>
     <quality>
+      <sourceid>1675810d-0f77-42f9-848a-eaa929cb3a20</sourceid>
       <guid>cf6f700d-dfd3-474e-9569-03c86e57c683</guid>
       <name>Sharpshooter</name>
       <extra />
@@ -6656,9 +6743,9 @@
       <firstlevelbonus>
       </firstlevelbonus>
       <notes />
-      <id>1675810d-0f77-42f9-848a-eaa929cb3a20</id>
     </quality>
     <quality>
+      <sourceid>8fc3e769-ea71-41e1-968c-600d507cdf94</sourceid>
       <guid>046cea2f-9ce9-495f-b601-8843c3afe3b7</guid>
       <name>Day Job (10 hrs)</name>
       <extra>Aufträge für Ares</extra>
@@ -6681,11 +6768,11 @@
       <firstlevelbonus>
       </firstlevelbonus>
       <notes />
-      <id>8fc3e769-ea71-41e1-968c-600d507cdf94</id>
     </quality>
   </qualities>
   <lifestyles>
     <lifestyle>
+      <sourceid>9cb0222c-14c1-4bea-bf83-055513a1f33e</sourceid>
       <guid>87525f50-4cef-4d22-8862-a94bc3c6a763</guid>
       <name>Wohnung</name>
       <cost>5000</cost>
@@ -6716,7 +6803,7 @@
       <lifestylequalities />
       <freegrids>
         <lifestylequality>
-          <id>adaf6b3d-874a-42e5-b08b-37adf1222f23</id>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>41ca231d-2b0f-47f3-8dc2-04821bd4ef9b</guid>
           <name>Grid Subscription</name>
           <category>Entertainment - Asset</category>
@@ -6737,7 +6824,7 @@
           <notes />
         </lifestylequality>
         <lifestylequality>
-          <id>adaf6b3d-874a-42e5-b08b-37adf1222f23</id>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>faf476c0-7b31-48a1-b2e3-16df24af90c1</guid>
           <name>Grid Subscription</name>
           <category>Entertainment - Asset</category>
@@ -6764,8 +6851,8 @@
   </lifestyles>
   <gears>
     <gear>
+      <sourceid>0025f1c7-45a4-4ec5-a692-e18aab2f97a9</sourceid>
       <guid>8c3daa64-ca3e-4ff7-ae30-85d12e9e8eee</guid>
-      <id>0025f1c7-45a4-4ec5-a692-e18aab2f97a9</id>
       <name>Lizenz für Alles</name>
       <category>Custom</category>
       <capacity />
@@ -6817,8 +6904,8 @@
       <sortorder>0</sortorder>
     </gear>
     <gear>
+      <sourceid>0c800bca-e6ff-475b-a014-c2069f5e364c</sourceid>
       <guid>53efa202-aa83-4803-9487-a4623c5c9955</guid>
-      <id>0c800bca-e6ff-475b-a014-c2069f5e364c</id>
       <name>Fake SIN</name>
       <category>ID/Credsticks</category>
       <capacity />
@@ -6851,8 +6938,8 @@
       <allowrename>True</allowrename>
       <children>
         <gear>
+          <sourceid>8a16bbb2-8028-4c74-b22b-7aad9d001073</sourceid>
           <guid>0a3e6908-4f59-4b1e-9969-8f6aa9a0c62c</guid>
-          <id>8a16bbb2-8028-4c74-b22b-7aad9d001073</id>
           <name>Fake License</name>
           <category>ID/Credsticks</category>
           <capacity />
@@ -6926,8 +7013,8 @@
       <sortorder>0</sortorder>
     </gear>
     <gear>
+      <sourceid>b2a0b340-c793-4322-8422-8b03d18a6fae</sourceid>
       <guid>e39bab35-f47a-4aac-9750-4f72798ce86f</guid>
-      <id>b2a0b340-c793-4322-8422-8b03d18a6fae</id>
       <name>Ammo: Regular Ammo</name>
       <category>Ammunition</category>
       <capacity />
@@ -6980,8 +7067,8 @@
       <sortorder>0</sortorder>
     </gear>
     <gear>
+      <sourceid>75ccb148-e774-429c-b854-a27816439626</sourceid>
       <guid>dd8b2983-194d-4810-a701-3d3bc000aafc</guid>
-      <id>75ccb148-e774-429c-b854-a27816439626</id>
       <name>Spare Clip</name>
       <category>Ammunition</category>
       <capacity />
@@ -7034,8 +7121,8 @@
       <sortorder>0</sortorder>
     </gear>
     <gear>
+      <sourceid>b2a0b340-c793-4322-8422-8b03d18a6fae</sourceid>
       <guid>e900aef4-ee64-493d-affb-da9601fc42f7</guid>
-      <id>b2a0b340-c793-4322-8422-8b03d18a6fae</id>
       <name>Ammo: Regular Ammo</name>
       <category>Ammunition</category>
       <capacity />
@@ -7088,8 +7175,8 @@
       <sortorder>0</sortorder>
     </gear>
     <gear>
+      <sourceid>75ccb148-e774-429c-b854-a27816439626</sourceid>
       <guid>3f7819b8-ae50-4f31-99b3-bf5ee11afbba</guid>
-      <id>75ccb148-e774-429c-b854-a27816439626</id>
       <name>Spare Clip</name>
       <category>Ammunition</category>
       <capacity />
@@ -7142,8 +7229,8 @@
       <sortorder>0</sortorder>
     </gear>
     <gear>
+      <sourceid>b2a0b340-c793-4322-8422-8b03d18a6fae</sourceid>
       <guid>b2ab799c-5a56-4efb-8b63-ad9686047345</guid>
-      <id>b2a0b340-c793-4322-8422-8b03d18a6fae</id>
       <name>Ammo: Regular Ammo</name>
       <category>Ammunition</category>
       <capacity />
@@ -7196,8 +7283,8 @@
       <sortorder>0</sortorder>
     </gear>
     <gear>
+      <sourceid>75ccb148-e774-429c-b854-a27816439626</sourceid>
       <guid>aadececa-5431-4e11-b736-c8b944984e3d</guid>
-      <id>75ccb148-e774-429c-b854-a27816439626</id>
       <name>Spare Clip</name>
       <category>Ammunition</category>
       <capacity />
@@ -7250,8 +7337,8 @@
       <sortorder>0</sortorder>
     </gear>
     <gear>
+      <sourceid>daecdfc8-15d5-4864-9e20-13e4a0dca88e</sourceid>
       <guid>38ed54b7-e56d-4d0b-8ec6-fc13c7eababa</guid>
-      <id>daecdfc8-15d5-4864-9e20-13e4a0dca88e</id>
       <name>Minigrenade: High Explosive</name>
       <category>Ammunition</category>
       <capacity />
@@ -7304,8 +7391,8 @@
       <sortorder>0</sortorder>
     </gear>
     <gear>
+      <sourceid>8e1583bf-4cc5-4498-a800-36cb61d3fb27</sourceid>
       <guid>c23d9f17-3279-4a80-9021-4b2b8b25ce73</guid>
-      <id>8e1583bf-4cc5-4498-a800-36cb61d3fb27</id>
       <name>Minigrenade: Fragmentation</name>
       <category>Ammunition</category>
       <capacity />
@@ -7358,8 +7445,8 @@
       <sortorder>0</sortorder>
     </gear>
     <gear>
+      <sourceid>8bed8fa9-b75e-44ad-8181-a9dcd1f110cd</sourceid>
       <guid>bc522f4b-37fa-441d-864d-161319353c43</guid>
-      <id>8bed8fa9-b75e-44ad-8181-a9dcd1f110cd</id>
       <name>Gecko Tape Gloves</name>
       <category>Survival Gear</category>
       <capacity />
@@ -7413,7 +7500,7 @@
   </gears>
   <vehicles>
     <vehicle>
-      <id>87435f01-f4e3-424f-a252-2415b9b988cd</id>
+      <sourceid>87435f01-f4e3-424f-a252-2415b9b988cd</sourceid>
       <guid>f4e65c0c-5aae-4a65-b6db-f4a12ddef0e5</guid>
       <name>Echo Motors Zip</name>
       <category>Bikes</category>
@@ -7448,6 +7535,7 @@
       <vehiclename />
       <mods>
         <mod>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>e0bff4dd-31e4-4de2-b0dc-8fa44afbdd21</guid>
           <name>Metahuman Adjustment</name>
           <category>Cosmetic</category>
@@ -7477,6 +7565,7 @@
           <stolen>False</stolen>
         </mod>
         <mod>
+          <sourceid>00000000-0000-0000-0000-000000000000</sourceid>
           <guid>03fba4f4-f810-4cca-be31-a82a0eb68f49</guid>
           <name>Manual Operation</name>
           <category>Vehicle Weapon Mount</category>
@@ -7509,8 +7598,8 @@
       <weaponmounts />
       <gears>
         <gear>
+          <sourceid>2ca81a10-d0f7-4b39-ac93-a84f2f69f9d9</sourceid>
           <guid>b5cf60c4-8ef0-4c4e-99e1-59d150cadc55</guid>
-          <id>2ca81a10-d0f7-4b39-ac93-a84f2f69f9d9</id>
           <name>Sensor Array</name>
           <category>Sensors</category>
           <capacity>8/[0]</capacity>
@@ -7566,24 +7655,24 @@
       <location />
       <notes />
       <discountedcost>False</discountedcost>
+      <active>False</active>
+      <homenode>False</homenode>
+      <devicerating>1</devicerating>
+      <programlimit />
+      <overclocked>None</overclocked>
+      <attack />
+      <sleaze />
+      <dataprocessing />
+      <firewall />
+      <attributearray />
+      <modattack />
+      <modsleaze />
+      <moddataprocessing />
+      <modfirewall />
+      <modattributearray />
+      <canswapattributes>False</canswapattributes>
+      <sortorder>0</sortorder>
     </vehicle>
-    <active>False</active>
-    <homenode>False</homenode>
-    <devicerating>1</devicerating>
-    <programlimit />
-    <overclocked>None</overclocked>
-    <attack />
-    <sleaze />
-    <dataprocessing />
-    <firewall />
-    <attributearray />
-    <modattack />
-    <modsleaze />
-    <moddataprocessing />
-    <modfirewall />
-    <modattributearray />
-    <canswapattributes>False</canswapattributes>
-    <sortorder>0</sortorder>
   </vehicles>
   <metamagics />
   <arts />
@@ -10334,7 +10423,4 @@
     <source>R5</source>
   </sources>
   <customdatadirectorynames />
-  <plugins>
-    <ChummerHub.Client version="1.0.0.2">{"id":"3e6d429a-911c-4ab4-99a7-bf8e3f9f1b98","visibility":{"id":"126d1f42-8681-46d6-b75b-383f52976052","isPublic":null,"isGroupVisible":null,"userRights":null},"tags":[]}</ChummerHub.Client>
-  </plugins>
 </character>

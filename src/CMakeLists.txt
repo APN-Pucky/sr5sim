@@ -7,6 +7,8 @@
 set(sr5sim_SOURCES character.cpp 
 	load.cpp debug.cpp 
 	utils.cpp rng.cpp
+	improvement.cpp
+	weapon.cpp
 	sim.cpp
 )
 

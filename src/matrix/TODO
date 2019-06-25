@@ -1,0 +1,26 @@
+Matrix:
+- erstmal kann nichts mit Matrix interagieren -> Matrixinterface
+- es existieren verschiedene Ziele, die miteinander interagieren können (alle haben ein Icon)
+	- Geräte
+	- Dateien (in Hosts oder auf geräten gespeichert)
+	- Hosts
+	- Personas (normal, hacker(decker,technomancer), agenten, KI, sprites, programme)
+
+- Geräte können AROs haben, um AR sichtbar zu sein; kopplung; AROs können Matrixstuff machen, Hacken kann man nur das Gerät; AROs sind durch geo-tags physisch gebunden, können im Prinzip überall sein
+- normaler Charakter muss Persona laden über matrixtragendes Gerät (Kommlink, Cyberdeck, Stecker, spezielle Sachen)
+- Persona hat Attribute (Technomancer ist Persona + Charakter); status (offline, online, AR, VRC, VRH); schleichfahrt etc...; verschiedene Initiative
+- AR kann physisch und matrix machen; VR nur Matrix; offline kann nichts machen und wird auch nicht angezeigt, online kann immer noch angegriffen werden
+(- Bodytech und Bioware ist zu beachten, meist in den stats, also nicht extra erforderlich)
+- Handlungsphase[2*einfach(max 1 Angriff), 1*komplex], 1*frei nachdem man dran war, unterbrechungen immer; hier nur matrixhandlungen betrachtet
+
+
+- normies sehen AROs und können durch kommlink etc. zivile aktionen durchführen
+- hacker können angriffsfähigkeiten und schleichskillz nutzen
+- Hosts können alles sein, keine Gesetze; grids sind etwas eingeschränkt
+- physisch nahe Objekte auch in der matrix nahe (zusätzlich entfernung = rauschen); hosts sind immer erreichbar, wenn auch mit gridnachteil/können immer gesucht werden
+- Hosts haben Agenten(ICs) und Spinnen(Hacker) gegen unerlaubte eindringlinge
+- Marks können auf allen Icons sein und werden dem entsprechend gespeichert oder verworfen
+- resonanz(räume) kann nur von technomancern gesehen/wahrgenommen werden
+
+S. 214
+
